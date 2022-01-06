@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.chat.ChattingActivity"
+            android:exported="false"
+            android:label="채팅하기"/>
     </application>
 
 </manifest>

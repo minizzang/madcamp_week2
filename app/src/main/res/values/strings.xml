@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">madcamp_week2</string>
+    <string name="title_home">Home</string>
+    <string name="title_chat">Chat</string>
+    <string name="title_items">Items</string>
+    <string name="title_profile">Profile</string>
+</resources>

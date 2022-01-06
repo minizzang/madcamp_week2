@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.databinding.FragmentHomeBinding
@@ -54,6 +55,7 @@ class HomeFragment : Fragment() {
 
             homeItemAdapter.items = items
             homeItemAdapter.notifyDataSetChanged()
+            binding.mainRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 

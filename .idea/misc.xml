@@ -3,6 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/chatting_input.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/chatting_top.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/recieve_message_background.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/sending_button.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/sent_message_background.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_list.xml" value="0.152" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_list_item.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_screen.xml" value="0.2" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_chat.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/recieve_message.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/sent_message.xml" value="0.264" />
+        <entry key="..\:/madcamp_week2/app/src/main/res/layout/activity_add_post.xml" value="0.2" />
         <entry key="..\:/madcamp_week2/app/src/main/res/drawable/add_post_button.xml" value="0.38229166666666664" />
         <entry key="..\:/madcamp_week2/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.38229166666666664" />
         <entry key="..\:/madcamp_week2/app/src/main/res/drawable/ic_baseline_add_photo_alternate_24.xml" value="0.38229166666666664" />

@@ -7,22 +7,29 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="@+id/txt_test"
-        app:layout_constraintStart_toStartOf="@+id/txt_test"
-        tools:layout_editor_absoluteY="505dp" />
+        android:id="@+id/btn_naverLogout"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="52dp"
+        android:background="#1EC800"
+        android:text="로그아웃"
+        android:textColor="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txt_test"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="241dp"
+        android:layout_marginEnd="175dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btn_test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

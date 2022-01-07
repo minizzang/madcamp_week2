@@ -1,6 +1,7 @@
 package com.example.madcamp_week2
 
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -18,6 +19,14 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var name:String;
+        if (intent.hasExtra("user_name")) {
+            name = intent.getStringExtra("user_name").toString()
+            Log.d("name","$name")
+        } else {
+            Log.d("err", "none")
+        }
 
         val navView: BottomNavigationView = binding.navView
 

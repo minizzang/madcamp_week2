@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.madcamp_week2">
-
     <!-- 인터넷 연결 허용 퍼미션 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Madcamp_week2">
+        android:theme="@style/Theme.Madcamp_week2"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.home.ItemDetailActivity"
+            android:name=".NickNameActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.AddPostActivity"
-            android:exported="false"
-            android:label="글 추가하기"/>
+            android:name="com.nhn.android.naverlogin.ui.OAuthCustomTabActivity"
+            android:exported="true" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name">
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +28,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.home.ItemDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.AddPostActivity"
+            android:exported="false"
+            android:label="글 추가하기" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"></activity>
+        <activity
             android:name=".ui.chat.ChattingActivity"
             android:exported="false"
-            android:label="채팅하기"/>
+            android:label="채팅하기" />
     </application>
 
 </manifest>

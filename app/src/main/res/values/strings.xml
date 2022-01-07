@@ -4,4 +4,11 @@
     <string name="title_chat">Chat</string>
     <string name="title_items">Items</string>
     <string name="title_profile">Profile</string>
+
+    <string name="naver_client_id">Z1VZ6dT56XDYLSohRZRN</string>
+    <string name="naver_client_secret">Oxdzed_RYw</string>
+    <string name="naver_client_name">빌리지</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

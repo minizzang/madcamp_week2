@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
                 android:hint="상품의 이름을 입력해주세요."/>
         </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
                 android:hint="빌려줄 장소를 선택해주세요."/>
         </LinearLayout>
 
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
                 android:hint="빌려줄 기간을 입력해주세요."/>
         </LinearLayout>
 
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
                 android:hint="대여 가격을 입력해주세요."/>
         </LinearLayout>
 
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name"
+                android:text=""
                 android:hint="상품 설명을 입력해주세요."/>
         </LinearLayout>
 

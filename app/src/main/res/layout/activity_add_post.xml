@@ -13,17 +13,30 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-            android:background="@drawable/add_post_button"
-            android:layout_marginVertical="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/btn_image"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:background="@drawable/item_square_lightblue"
+                android:layout_marginVertical="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.491"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
+
+            <ImageView
+                android:id="@+id/iv_itemImage"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
+                android:layout_marginVertical="20dp"/>
+        </FrameLayout>
+
 
 
         <LinearLayout
@@ -44,11 +57,13 @@
             <EditText
                 android:id="@+id/edit_addItemName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/item_square"
+                android:paddingLeft="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
-                android:hint="상품의 이름을 입력해주세요."/>
+                android:hint="상품 이름을 입력해주세요."/>
         </LinearLayout>
 
         <LinearLayout
@@ -68,35 +83,13 @@
             <EditText
                 android:id="@+id/edit_addItemPlace"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/item_square"
+                android:paddingLeft="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
                 android:hint="빌려줄 장소를 선택해주세요."/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_addItemDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="대여 기간"
-                android:textSize="16sp" />
-            <EditText
-                android:id="@+id/edit_addItemDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text=""
-                android:hint="빌려줄 기간을 입력해주세요."/>
         </LinearLayout>
 
         <LinearLayout
@@ -116,12 +109,59 @@
             <EditText
                 android:id="@+id/edit_addItemPrice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/item_square"
+                android:paddingLeft="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
                 android:hint="대여 가격을 입력해주세요."/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="4dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_addItemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:text="대여 기간"
+                android:textSize="16sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_addItemDateStart"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/item_square"
+                    android:text="시작 날짜"
+                    android:textColor="?android:textColorHint"
+                    android:textSize="18sp" />
+                <Button
+                    android:id="@+id/btn_addItemDateEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:text="마지막 날짜"
+                    android:textColor="?android:textColorHint"
+                    android:textSize="18sp"
+                    android:background="@drawable/item_square"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,12 +174,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="설명"
                 android:textSize="16sp" />
             <EditText
                 android:id="@+id/edit_addItemDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
+                android:background="@drawable/item_square"
+                android:paddingLeft="16dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:text=""
@@ -150,8 +193,12 @@
             android:id="@+id/btn_summit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:text="등록하기" />
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="32dp"
+            android:background="@drawable/main_blue_square_round"
+            android:text="등록하기"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

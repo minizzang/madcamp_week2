@@ -34,7 +34,7 @@ class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeI
 
         fun bind(item : ItemData) {
             itemName.text = item.name
-            itemDate.text = item.date
+//            itemDate.text = item.date
             itemPrice.text = item.price.toString()
 
             itemView.setOnClickListener{

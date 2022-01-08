@@ -42,12 +42,12 @@ class NickNameActivity : AppCompatActivity() {
                 summitNickName.setBackgroundDrawable(resources.getDrawable(R.drawable.grey_square_round))
                 summitNickName.setText("확인 완료")
                 txt_confirm_nickname.setText("사용 가능한 별명입니다.")
-                txt_confirm_nickname.setTextColor(R.color.main_blue)  //반영 안됨???
+                txt_confirm_nickname.setTextColor(Color.parseColor("#64C5F1"))  //반영 안됨???
                 // 버튼 비활성화?
             }
             else {
                 txt_confirm_nickname.setText("중복된 별명이 있습니다.")
-                txt_confirm_nickname.setTextColor(R.color.main_red)
+                txt_confirm_nickname.setTextColor(Color.parseColor("#FF4537"))
             }
             // 8자 이상일 때 처리
 

@@ -3,6 +3,7 @@ package com.example.madcamp_week2
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.media.MediaCodec
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +12,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.commit
 import com.android.volley.Request
+import com.android.volley.RequestQueue
+import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
@@ -23,6 +27,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
+
 
 class NaverLogin {
     fun get(apiUrl: String, requestHeaders: Map<String, String>): String? {
@@ -75,32 +80,13 @@ class NaverLogin {
 
 class LoginActivity : AppCompatActivity() {
 
+    private val baseURL = BASE_URL
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val naver_client_id = "Z1VZ6dT56XDYLSohRZRN"
-        val naver_client_secret = "Oxdzed_RYw"
-        val naver_client_name = "빌리지"
-
         naverLogin()
-
-
-
-
-        // 서버-앱 연결 테스트용 버튼
-//        val btn : Button = findViewById(R.id.button_test)
-//        btn.setOnClickListener {
-//            Toast.makeText(this, "hi", Toast.LENGTH_LONG).show()
-//            VolleyService.testVolley(this) { testSuccess ->
-//                if (testSuccess) {
-//                    Toast.makeText(this, "통신 성공!", Toast.LENGTH_LONG).show()
-//                } else {
-//                    Toast.makeText(this, "통신 실패ㅠ", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//
-//        }
     }
 
     fun naverLogin() {
@@ -136,10 +122,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         mOAuthLoginButton!!.setOAuthLoginHandler(mOAuthLoginHandler)
-
     }
-
-
 
 
     fun naverLoginParser(msg: String) {
@@ -158,26 +141,69 @@ class LoginActivity : AppCompatActivity() {
                 val mobile = resultJson.get("mobile").toString()
                 val name = resultJson.get("name").toString()  //이름 타입?
 
-//                val stringRequest = object : StringRequest(
-//                    Request.Method.POST,
-//                )
+                serverFindUser(id, name, email, mobile)
 
-                //DB에 회원정보가 없으면 (회원가입의 경우) 닉네임, 지역 입력 fragment 띄우기
-                val nickname_intent = Intent(this, NickNameActivity::class.java)
-                nickname_intent.putExtra("user_name", name)
-                startActivity(nickname_intent)
-
-                //DB에 회원정보가 있으면 액티비티 종료 후 main activity 실행
-//                Toast.makeText(applicationContext, "네이버 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()
-//                val intent = Intent(this, MainActivity::class.java)
-//                intent.putExtra("user_name", name)
-//                startActivity(intent)
-//                finish()
             } else {
                 Toast.makeText(applicationContext, "네이버 로그인에 실패했습니다.", Toast.LENGTH_SHORT).show()
             }
         } else {
             Toast.makeText(applicationContext,"네이버 로그인에 실패했습니다.",Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    fun serverFindUser(id:String, name:String, email:String, mobile:String) {
+
+        Log.d("id", "$id")
+        Log.d("name", "$name")
+        val requestQueue = Volley.newRequestQueue(this)
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, "$baseURL"+"/api/findUser",
+            Response.Listener<String> { res ->
+                Log.d("msg", "$res")
+                val msg = JSONObject(res).getString("val")
+                if (msg == "1") {   // 이미 가입한 회원
+                    handleLogin(true, id, name, email, mobile)
+                } else {
+                    handleLogin(false, id, name, email, mobile)
+                }
+            },
+            Response.ErrorListener { err ->
+                Log.d("findUser", "error! $err")
+            }) {
+                override fun getBodyContentType(): String {
+                    return "application/json"
+                }
+                override fun getBody(): ByteArray {
+                    val param = HashMap<String, String>()
+                    param.put("id", id)
+                    return JSONObject(param as Map<*, *>).toString().toByteArray()
+                }
+            }
+
+        requestQueue.add(stringRequest)
+    }
+
+    fun handleLogin(bool: Boolean, id:String, name:String, email:String, mobile:String) {
+        //DB에 회원정보가 없으면 (회원가입의 경우) 닉네임, 지역 입력 fragment 띄우기
+        if (!bool) {
+            Log.d("handle", "not user")
+            val nickname_intent = Intent(this, NickNameActivity::class.java)
+            nickname_intent.putExtra("user_id", id)
+            nickname_intent.putExtra("user_name", name)
+            nickname_intent.putExtra("user_email", email)
+            nickname_intent.putExtra("user_mobile", mobile)
+            startActivity(nickname_intent)
+        }  //DB에 회원정보가 있으면 액티비티 종료 후 main activity 실행
+        else {
+            Toast.makeText(applicationContext, "네이버 로그인에 성공했습니다.", Toast.LENGTH_SHORT).show()   //Toast 띄우기?
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("user_id", id)
+            intent.putExtra("user_name", name)
+            intent.putExtra("user_email", email)
+            intent.putExtra("user_mobile", mobile)
+            startActivity(intent)
+            finish()
         }
     }
 

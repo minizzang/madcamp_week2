@@ -10,6 +10,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.commit
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
@@ -156,14 +158,11 @@ class LoginActivity : AppCompatActivity() {
                 val mobile = resultJson.get("mobile").toString()
                 val name = resultJson.get("name").toString()  //이름 타입?
 
-                Log.d(TAG, id)
-                Log.d(TAG, email)
-                Log.d(TAG, mobile)
-                Log.d(TAG, name)
+//                val stringRequest = object : StringRequest(
+//                    Request.Method.POST,
+//                )
 
-                //DB에 저장하는 작업하기
-
-                //DB에 회원정보가 없으면 (회원가입의 경우) 닉네임 입력 fragment 띄우기
+                //DB에 회원정보가 없으면 (회원가입의 경우) 닉네임, 지역 입력 fragment 띄우기
                 val nickname_intent = Intent(this, NickNameActivity::class.java)
                 nickname_intent.putExtra("user_name", name)
                 startActivity(nickname_intent)

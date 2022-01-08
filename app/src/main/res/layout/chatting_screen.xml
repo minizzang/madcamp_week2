@@ -66,7 +66,7 @@
         android:orientation="vertical"
         android:overScrollMode="never"
         android:padding="20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/chattingBackground"
         app:layout_constraintTop_toTopOf="@id/backArrow"/>
@@ -75,6 +75,7 @@
         android:id="@+id/progress"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/chattingBackground"
         app:layout_constraintEnd_toEndOf="@id/chattingBackground"
         app:layout_constraintStart_toStartOf="@id/chattingBackground"
@@ -91,12 +92,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <Button
+            android:id="@+id/sendButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
             android:padding="8dp"
-            android:src="@drawable/ic_round_send_24"
+            android:background="@drawable/ic_round_send_24"
             app:tint="@color/white" />
     </FrameLayout>
 

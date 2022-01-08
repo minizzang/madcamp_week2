@@ -17,6 +17,7 @@ import com.example.madcamp_week2.databinding.FragmentChatBinding
 
 class ChatFragment : Fragment() {
 
+
     private var _binding: FragmentChatBinding? = null
     lateinit var chatListView : RecyclerView
     private val dataArray = ArrayList<ChatListData>()

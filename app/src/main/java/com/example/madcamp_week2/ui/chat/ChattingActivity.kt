@@ -52,7 +52,7 @@ class ChattingActivity : AppCompatActivity() {
         mSocket.connect()
 
         val obj = RoomData()
-        username = "usernametest1"
+        username = "usernametest2"
         roomNum = "1"
         obj.setRoomData(username, roomNum)
 

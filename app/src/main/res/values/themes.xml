@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Madcamp_week2" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.Madcamp_week2" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!--<item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>-->
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/purple_700</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

@@ -2,6 +2,7 @@ package com.example.madcamp_week2
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -38,7 +39,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_chat, R.id.navigation_items, R.id.navigation_profile
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //supportActionBar?.hide()
     }
 }

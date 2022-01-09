@@ -27,6 +27,11 @@ class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeI
 
     override fun getItemCount(): Int = items.size
 
+    fun filterList(filteredList: ArrayList<ItemData>){
+        items = filteredList
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val itemName: TextView = itemView.findViewById(R.id.tv_itemName)
         private val itemDate: TextView = itemView.findViewById(R.id.tv_itemDate)

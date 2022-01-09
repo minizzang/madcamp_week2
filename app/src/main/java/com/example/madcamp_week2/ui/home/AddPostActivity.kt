@@ -206,6 +206,9 @@ class AddPostActivity : AppCompatActivity() {
             itemDateEnd = btn_dateEnd.text.toString()
             itemDescription = findViewById<EditText>(R.id.edit_addItemDescription).text.toString()
 
+            Log.d("date", "$itemDateEnd")
+            Log.d("date", "$itemDateStart")
+
             //shared preference data 읽어오기
             val appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
             val gson = Gson()

@@ -92,12 +92,12 @@ class AddPostActivity : AppCompatActivity() {
 
         // 등록하기 버튼을 눌렀을 때
         findViewById<Button>(R.id.btn_summit).setOnClickListener {
-            itemName = R.id.edit_addItemName.toString()
-            itemPlace = R.id.edit_addItemPlace.toString()
-            itemPrice = R.id.edit_addItemPrice.toString()
+            itemName = findViewById<EditText>(R.id.edit_addItemName).text.toString()
+            itemPlace = findViewById<EditText>(R.id.edit_addItemPlace).text.toString()
+            itemPrice = findViewById<EditText>(R.id.edit_addItemPrice).text.toString()
             itemDateStart = btn_dateStart.text.toString()
             itemDateEnd = btn_dateEnd.text.toString()
-            itemDescription = R.id.edit_addItemDescription.toString()
+            itemDescription = findViewById<EditText>(R.id.edit_addItemDescription).text.toString()
 
             //shared preference data 읽어오기
             val appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
@@ -106,7 +106,8 @@ class AddPostActivity : AppCompatActivity() {
             var obj = gson.fromJson(json, User::class.java)
             val user_id:String = obj.id.toString()
 
-            Log.d("user_id", "$user_id")
+//            Log.d("user_id", "$user_id")
+//            Log.d("///item Name///", "$itemName")
 
             val drawable = findViewById<ImageView>(R.id.iv_itemImage).drawable
             val bitmapDrawable = drawable as? BitmapDrawable
@@ -124,6 +125,8 @@ class AddPostActivity : AppCompatActivity() {
 
     fun serverAddItem(user_id:String, image:String, name:String, place:String, price:String, date_start:String, date_end:String, description:String) {
         val requestQueue = Volley.newRequestQueue(this)
+        Log.d("name", "res : $name")
+
         val stringRequest = object : StringRequest(
             Request.Method.POST, "$baseURL"+"/api/addItem",
             Response.Listener<String> { res ->

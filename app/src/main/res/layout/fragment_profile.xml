@@ -44,6 +44,7 @@
                     android:layout_gravity="center_vertical">
 
                     <TextView
+                        android:id="@+id/profileNickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text = "Nick Name"
@@ -51,6 +52,7 @@
                         android:layout_margin="10dp"/>
 
                     <TextView
+                        android:id="@+id/profileEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text = "email@naver.com"
@@ -84,7 +86,7 @@
                     android:layout_marginStart="20dp" />
 
                 <TextView
-                    android:id="@+id/userName"
+                    android:id="@+id/profileName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text = "홍길동"
@@ -106,7 +108,7 @@
                     android:layout_marginStart="20dp" />
 
                 <TextView
-                    android:id="@+id/userMail"
+                    android:id="@+id/profileEmail2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text = "gildong@naver.com"
@@ -128,7 +130,7 @@
                     android:layout_marginStart="20dp" />
 
                 <TextView
-                    android:id="@+id/userMobile"
+                    android:id="@+id/profileMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text = "010-1234-5678"
@@ -150,7 +152,7 @@
                     android:layout_marginStart="20dp"/>
 
                 <TextView
-                    android:id="@+id/userPlace"
+                    android:id="@+id/profilePlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text = "충청"

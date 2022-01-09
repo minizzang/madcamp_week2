@@ -130,6 +130,7 @@ class NickNameActivity : AppCompatActivity() {
                     Log.d("addUser", "res : $msg")
 
                     val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra("user_id", id)
                     intent.putExtra("nickname", nickname)
                     intent.putExtra("place", place)
                     startActivity(intent)

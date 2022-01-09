@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="5dp"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -23,63 +24,64 @@
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
-            <TextView
+            <Button
+                android:id="@+id/belowTen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10,000원 이하"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10,000원 ~ 20,000원"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20,000원 ~ 30,000원"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30,000원 ~ 40,000원"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="40,000원 ~ 50,000원"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50,000원 초과"
                 android:textSize="18sp"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="7dp"
+                android:paddingHorizontal="10dp"
                 android:layout_margin="7dp"
                 android:background="@drawable/main_blue_outline"/>
 

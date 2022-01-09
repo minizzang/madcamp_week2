@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.madcamp_week2.LoginActivity
 import com.example.madcamp_week2.MainActivity
+import com.example.madcamp_week2.User
 import com.example.madcamp_week2.databinding.FragmentProfileBinding
 import com.google.gson.Gson
 import com.nhn.android.naverlogin.OAuthLogin
@@ -32,13 +33,33 @@ class ProfileFragment : Fragment() {
 
         var mOAuthLoginInstance = OAuthLogin.getInstance()
 
+        val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
+        val gson = Gson()
+        var json = appSharedPreferences.getString("user", "")
+        var obj = gson.fromJson(json, User::class.java)
+
+        val nickNameView = binding.profileNickname
+        val emailView = binding.profileEmail
+        val nameView = binding.profileName
+        val emailView2 = binding.profileEmail2
+        val mobileView = binding.profileMobile
+        val placeView = binding.profilePlace
+
+        nickNameView.text = obj.nickname
+        emailView.text = obj.email
+        nameView.text = obj.name
+        emailView2.text = obj.email
+        mobileView.text = obj.mobile
+        placeView.text = obj.place
+
+
         binding.btnNaverLogout.setOnClickListener {
             mOAuthLoginInstance.logout(context)
 
-            val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
-            val prefsEditor = appSharedPreferences.edit()
-            prefsEditor.clear()
-            prefsEditor.commit()
+            val appSharedPreferences2 = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
+            val prefsEditor2 = appSharedPreferences2.edit()
+            prefsEditor2.clear()
+            prefsEditor2.commit()
 
             Log.d("logout", "successed")
 

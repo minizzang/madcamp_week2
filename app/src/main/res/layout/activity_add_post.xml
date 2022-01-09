@@ -50,6 +50,7 @@
                 android:id="@+id/tv_addItemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="16dp"
                 android:text="상품 이름"
                 android:textSize="16sp" />
@@ -78,18 +79,71 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
+                android:layout_gravity="center_vertical"
                 android:text="대여 장소"
                 android:textSize="16sp" />
-            <EditText
-                android:id="@+id/edit_addItemPlace"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text=""
-                android:hint="빌려줄 장소를 선택해주세요."/>
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/addItemSeoul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="서울"/>
+
+                    <Button
+                        android:id="@+id/addItemDaejeon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="대전"/>
+
+                    <Button
+                        android:id="@+id/addItemDaegu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="대구"/>
+
+                    <Button
+                        android:id="@+id/addItemBusan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="부산"/>
+
+                    <Button
+                        android:id="@+id/addItemChungcheong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="충청"/>
+
+                    <Button
+                        android:id="@+id/addItemJeju"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/item_square"
+                        android:layout_marginHorizontal="3dp"
+                        android:text="제주"/>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
         </LinearLayout>
 
         <LinearLayout

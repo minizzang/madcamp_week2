@@ -46,7 +46,7 @@
                 android:background="@drawable/item_square_lightblue"/>
 
             <Button
-                android:id="@+id/Contract"
+                android:id="@+id/btn_borrow"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="빌리기"

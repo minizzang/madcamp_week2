@@ -14,7 +14,7 @@ import kotlin.coroutines.coroutineContext
 
 class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>(){
 
-    var items = mutableListOf<ItemData>()
+    var items = ArrayList<ItemData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemAdapter.ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.home_item_recycler, parent, false)

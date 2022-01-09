@@ -17,11 +17,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.MainActivity
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.databinding.FragmentHomeBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class HomeFragment : Fragment() {
     lateinit var homeItemAdapter: HomeItemAdapter
-    val items = mutableListOf<ItemData>()
+    val items = ArrayList<ItemData>()
+    val tempItem = ArrayList<ItemData>()
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -56,6 +59,19 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        val priceButton = binding.priceFilter
+        val periodButton = binding.dateFilter
+
+        priceButton.setOnClickListener {
+            val priceSheet = BottomSheetPrice()
+            priceSheet.show(parentFragmentManager, priceSheet.tag )
+        }
+
+        periodButton.setOnClickListener {
+            val periodSheet = BottomSheetPeriod()
+            periodSheet.show(parentFragmentManager, periodSheet.tag )
+        }
+
         return root
     }
 
@@ -82,4 +98,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

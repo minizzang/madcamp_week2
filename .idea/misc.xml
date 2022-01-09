@@ -42,13 +42,15 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_list_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_screen.xml" value="0.2" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_chat.xml" value="0.11367753623188406" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.6" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_items.xml" value="0.264" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/home_item_recycler.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/item_history_list.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/lend_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/recieve_message.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_period.xml" value="0.178125" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_price.xml" value="0.5051903114186851" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/sent_message.xml" value="0.264" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/spinner_item.xml" value="0.178125" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/test.xml" value="0.19739583333333333" />

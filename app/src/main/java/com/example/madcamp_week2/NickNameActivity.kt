@@ -46,7 +46,7 @@ class NickNameActivity : AppCompatActivity() {
 
         val summitNickName:Button = findViewById<Button>(R.id.btn_summitNickName)
         summitNickName.setOnClickListener {
-        //닉네임 중복확인
+            //닉네임 중복확인
             nickname = findViewById<EditText>(R.id.editTextUserNickName).text.toString()
             serverCheckNickName(nickname)
         }
@@ -88,15 +88,15 @@ class NickNameActivity : AppCompatActivity() {
             Response.ErrorListener { err ->
                 Log.d("checkNickname", "error! $err")
             }) {
-                override fun getBodyContentType(): String {
-                    return "application/json"
-                }
-                override fun getBody(): ByteArray {
-                    val param = HashMap<String, String>()
-                    param.put("nickname", nickname)
-                    return JSONObject(param as Map<*, *>).toString().toByteArray()
-                }
+            override fun getBodyContentType(): String {
+                return "application/json"
             }
+            override fun getBody(): ByteArray {
+                val param = HashMap<String, String>()
+                param.put("nickname", nickname)
+                return JSONObject(param as Map<*, *>).toString().toByteArray()
+            }
+        }
         requestQueue.add(stringRequest)
     }
 
@@ -145,7 +145,7 @@ class NickNameActivity : AppCompatActivity() {
             }
             override fun getBody(): ByteArray {
                 val param = HashMap<String, String>()
-                        param.put("id", id)
+                param.put("id", id)
                 param.put("name", name)
                 param.put("nickname", nickname)
                 param.put("email", email)

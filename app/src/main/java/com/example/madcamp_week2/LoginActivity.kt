@@ -108,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
                         val apiURL = "https://openapi.naver.com/v1/nid/me"
                         val responseBody: String = NaverLogin().get(apiURL, requestHeaders).toString()
                         Log.d(TAG, responseBody)
-                    naverLoginParser(responseBody)
+                        naverLoginParser(responseBody)
                     }.start()
                     Log.d("result", "happy")
                 } else {
@@ -157,6 +157,7 @@ class LoginActivity : AppCompatActivity() {
         Log.d("id", "$id")
         Log.d("name", "$name")
         val requestQueue = Volley.newRequestQueue(this)
+        Log.d("test", "nooooooooo")
         val stringRequest = object : StringRequest(
             Request.Method.POST, "$baseURL"+"/api/findUser",
             Response.Listener<String> { res ->
@@ -171,15 +172,15 @@ class LoginActivity : AppCompatActivity() {
             Response.ErrorListener { err ->
                 Log.d("findUser", "error! $err")
             }) {
-                override fun getBodyContentType(): String {
-                    return "application/json"
-                }
-                override fun getBody(): ByteArray {
-                    val param = HashMap<String, String>()
-                    param.put("id", id)
-                    return JSONObject(param as Map<*, *>).toString().toByteArray()
-                }
+            override fun getBodyContentType(): String {
+                return "application/json"
             }
+            override fun getBody(): ByteArray {
+                val param = HashMap<String, String>()
+                param.put("id", id)
+                return JSONObject(param as Map<*, *>).toString().toByteArray()
+            }
+        }
 
         requestQueue.add(stringRequest)
     }

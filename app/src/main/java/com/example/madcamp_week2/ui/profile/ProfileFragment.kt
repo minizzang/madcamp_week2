@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
 
         nickNameView.text = obj.nickname
         emailView.text = obj.email
-        //nameView.text = obj.name
+        nameView.text = obj.name
         emailView2.text = obj.email
         mobileView.text = obj.mobile
         placeView.text = obj.place

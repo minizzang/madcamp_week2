@@ -113,6 +113,7 @@ class MainActivity : AppCompatActivity() {
     private fun storeUserInfo() {
         val userInfo = User()
         userInfo.id = user_id
+        userInfo.name = user_name
         userInfo.nickname = user_nickname
         userInfo.place = user_place
         userInfo.email = user_email

@@ -59,6 +59,111 @@ class AddPostActivity : AppCompatActivity() {
             startActivityForResult(intent, GALLERY)
         }
 
+        val btn_seoul = findViewById<Button>(R.id.addItemSeoul)
+        val btn_daejeon = findViewById<Button>(R.id.addItemDaejeon)
+        val btn_daegu = findViewById<Button>(R.id.addItemDaegu)
+        val btn_busan = findViewById<Button>(R.id.addItemBusan)
+        val btn_chungcheong = findViewById<Button>(R.id.addItemChungcheong)
+        val btn_jeju = findViewById<Button>(R.id.addItemJeju)
+
+        var flag = Array<Int>(6) {_ -> 0}
+        var btnArray = arrayOf(btn_seoul, btn_daejeon, btn_daegu, btn_busan, btn_chungcheong, btn_jeju)
+
+        fun checkflag(): Int {
+
+            for(i in 0..5){
+                if(flag[i] == 1){
+                    return i
+                }
+            }
+
+            return -1
+        }
+
+        btn_seoul.setOnClickListener {
+            if(checkflag() == -1){
+                btn_seoul.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[0] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_seoul.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[0] = 1
+            }
+        }
+
+        btn_daejeon.setOnClickListener {
+            if(checkflag() == -1){
+                btn_daejeon.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[1] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_daejeon.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[1] = 1
+            }
+        }
+
+        btn_daegu.setOnClickListener {
+            if(checkflag() == -1){
+                btn_daegu.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[2] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_daegu.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[2] = 1
+            }
+        }
+
+        btn_busan.setOnClickListener {
+            if(checkflag() == -1){
+                btn_busan.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[3] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_busan.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[3] = 1
+            }
+        }
+
+        btn_chungcheong.setOnClickListener {
+            if(checkflag() == -1){
+                btn_chungcheong.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[4] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_chungcheong.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[4] = 1
+            }
+        }
+
+        btn_jeju.setOnClickListener {
+            if(checkflag() == -1){
+                btn_jeju.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[5] = 1
+            }
+            else{
+                val j = checkflag()
+                btnArray[j].background = getDrawable(R.drawable.item_square)
+                flag[j] = 0
+                btn_jeju.background = getDrawable(R.drawable.main_blue_square_round)
+                flag[5] = 1
+            }
+        }
+
         val btn_dateStart : Button = findViewById<Button>(R.id.btn_addItemDateStart)
         btn_dateStart.setOnClickListener{
             val today = GregorianCalendar()

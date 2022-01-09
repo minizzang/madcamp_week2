@@ -30,12 +30,15 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/main_blue_square_round.xml" value="0.16354166666666667" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/main_light_blue_top_round.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/recieve_message_background.xml" value="0.275" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/search_background.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/second_blue_round_square.xml" value="0.16354166666666667" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/sending_button.xml" value="0.275" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/sent_message_background.xml" value="0.275" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_outline.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_round_left.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_round_right.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_round_square.xml" value="0.19427083333333334" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_add_post.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_add_post.xml" value="0.264" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_item_detail.xml" value="0.2178060413354531" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_login.xml" value="0.178125" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -44,7 +47,7 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_list_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_screen.xml" value="0.2" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_chat.xml" value="0.11367753623188406" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.6" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.5853242320819113" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_items.xml" value="0.264" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/home_item_recycler.xml" value="0.14739583333333334" />
@@ -52,7 +55,7 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/lend_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/recieve_message.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_period.xml" value="0.178125" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_price.xml" value="0.5051903114186851" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_price.xml" value="0.30409356725146197" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/sent_message.xml" value="0.264" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/spinner_item.xml" value="0.178125" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/test.xml" value="0.19739583333333333" />

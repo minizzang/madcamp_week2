@@ -9,7 +9,7 @@ import org.json.JSONObject
 
 object VolleyService {
 
-    val baseUrl :String = "http://172.10.5.90:80"
+    val baseUrl :String = "http://172.10.5.98:80"
 
     fun testVolley(context: Context, success: (Boolean)->Unit) {
         val myJson = JSONObject()

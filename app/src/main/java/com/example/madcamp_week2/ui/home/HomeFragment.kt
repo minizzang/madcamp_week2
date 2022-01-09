@@ -23,6 +23,8 @@ import com.example.madcamp_week2.BASE_URL
 import com.example.madcamp_week2.MainActivity
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.databinding.FragmentHomeBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -30,7 +32,6 @@ import org.json.JSONObject
 class HomeFragment : Fragment() {
     private val baseURL = BASE_URL
     lateinit var homeItemAdapter: HomeItemAdapter
-    var place : String = "seoul"  //user의 place로 default value 변경하기
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -43,6 +44,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         //검색창 위의 spinner
+        var place : String = ""
         var place_data = listOf("서울", "대전", "대구", "부산", "충청", "제주")
         var place_data_eng = listOf("seoul", "daejeon", "daegu", "busan", "chungcheong", "jeju")
         var adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, place_data)
@@ -64,6 +66,19 @@ class HomeFragment : Fragment() {
         btn_add.setOnClickListener{ view ->
             val intent = Intent(context, AddPostActivity::class.java)
             startActivity(intent)
+        }
+
+        val priceButton = binding.priceFilter
+        val periodButton = binding.dateFilter
+
+        priceButton.setOnClickListener {
+            val priceSheet = BottomSheetPrice()
+            priceSheet.show(parentFragmentManager, priceSheet.tag )
+        }
+
+        periodButton.setOnClickListener {
+            val periodSheet = BottomSheetPeriod()
+            periodSheet.show(parentFragmentManager, periodSheet.tag )
         }
 
         return root

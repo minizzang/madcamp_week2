@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
             val gson = Gson()
             val json = gson.toJson(userInfo)
 
-            prefsEditor.putString(userInfo.id, json)
+            prefsEditor.putString("user", json)
             prefsEditor.commit()
 
             Log.d("PREFERENCE","saved id")

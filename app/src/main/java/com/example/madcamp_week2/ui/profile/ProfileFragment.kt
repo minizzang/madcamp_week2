@@ -2,6 +2,7 @@ package com.example.madcamp_week2.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.madcamp_week2.LoginActivity
 import com.example.madcamp_week2.MainActivity
 import com.example.madcamp_week2.databinding.FragmentProfileBinding
+import com.google.gson.Gson
 import com.nhn.android.naverlogin.OAuthLogin
 
 class ProfileFragment : Fragment() {
@@ -32,8 +34,13 @@ class ProfileFragment : Fragment() {
 
         binding.btnNaverLogout.setOnClickListener {
             mOAuthLoginInstance.logout(context)
-            Log.d("logout", "successed")
 
+            val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.requireContext())
+            val prefsEditor = appSharedPreferences.edit()
+            prefsEditor.clear()
+            prefsEditor.commit()
+
+            Log.d("logout", "successed")
 
             val intent = Intent(context, LoginActivity::class.java)
             startActivity(intent)

@@ -2,9 +2,11 @@ package com.example.madcamp_week2.ui.home
 
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -107,6 +109,7 @@ class HomeFragment : Fragment() {
         }
 
 
+
         Log.d("place1", "$place")
         serverGetItems(place/*, priceFilter*/)
 
@@ -127,6 +130,7 @@ class HomeFragment : Fragment() {
                         val resMsg :String = JSONArray(res)[i].toString();
 
                         val item_id = JSONObject(resMsg).getString("item_id")
+                        val item_image = JSONObject(resMsg).getString("item_image")
                         val item_name = JSONObject(resMsg).getString("item_name")
                         val item_post_time = JSONObject(resMsg).getString("post_time")
                         val item_date_start = JSONObject(resMsg).getString("item_date_start")
@@ -135,7 +139,7 @@ class HomeFragment : Fragment() {
                         val item_place = JSONObject(resMsg).getString("item_place")
 
                         //if(priceFilter == -1) {
-                            add(ItemData(item_id, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
+                            add(ItemData(item_id, item_image, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
                         //}
 
 

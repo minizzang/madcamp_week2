@@ -36,13 +36,13 @@ import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
 class AddPostActivity : AppCompatActivity() {
-    lateinit var itemName: String
-    lateinit var itemDateStart : String
-    lateinit var itemDateEnd : String
-    lateinit var itemPlace: String
-    lateinit var itemPrice: String
-    lateinit var itemImage: String
-    lateinit var itemDescription: String
+    var itemName: String = ""
+    var itemDateStart : String = ""
+    var itemDateEnd : String = ""
+    var itemPlace: String = ""
+    var itemPrice: String = ""
+    var itemImage: String = ""
+    var itemDescription: String = ""
     private val GALLERY = 1
     private val baseURL = BASE_URL
 
@@ -199,7 +199,8 @@ class AddPostActivity : AppCompatActivity() {
         // 등록하기 버튼을 눌렀을 때
         findViewById<Button>(R.id.btn_summit).setOnClickListener {
             itemName = findViewById<EditText>(R.id.edit_addItemName).text.toString()
-            itemPlace = findViewById<EditText>(R.id.edit_addItemPlace).text.toString()
+//            itemPlace = findViewById<EditText>(R.id.edit_addItemPlace).text.toString()  // 민서씨 이거 수정해주세요~
+            itemPlace = "daejeon"
             itemPrice = findViewById<EditText>(R.id.edit_addItemPrice).text.toString()
             itemDateStart = btn_dateStart.text.toString()
             itemDateEnd = btn_dateEnd.text.toString()
@@ -231,7 +232,8 @@ class AddPostActivity : AppCompatActivity() {
 
     fun serverAddItem(user_id:String, image:String, name:String, place:String, price:String, date_start:String, date_end:String, description:String) {
         val requestQueue = Volley.newRequestQueue(this)
-        Log.d("name", "res : $name")
+        Log.d("try", "server add item")
+        Log.d("try", "id:$user_id, id:$image, id:$name, id:$place, id:$price, id:$date_start, id:$date_end, id:$description")
 
         val stringRequest = object : StringRequest(
             Request.Method.POST, "$baseURL"+"/api/addItem",

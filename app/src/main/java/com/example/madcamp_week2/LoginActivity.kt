@@ -155,30 +155,30 @@ class LoginActivity : AppCompatActivity() {
 
     fun serverFindUser(id:String, name:String, email:String, mobile:String) {
 
-        Log.d("id", "$id")
-        Log.d("name", "$name")
-        val requestQueue = Volley.newRequestQueue(this)
-        Log.d("test", "nooooooooo")
-        val stringRequest = object : StringRequest(
-            Request.Method.POST, "$baseURL"+"/api/findUser",
-            Response.Listener<String> { res ->
-                Log.d("msg", "$res")
-                val msg :String = JSONArray(res)[0].toString();
+                    Log.d("id", "$id")
+                    Log.d("name", "$name")
+                    val requestQueue = Volley.newRequestQueue(this)
+                    Log.d("test", "nooooooooo")
+                    val stringRequest = object : StringRequest(
+                        Request.Method.POST, "$baseURL"+"/api/findUser",
+                        Response.Listener<String> { res ->
+                            Log.d("msg", "$res")
+                            val msg :String = JSONArray(res)[0].toString();
 //                val msg = JSONObject(res).getString("val")
-                if (JSONObject(msg).getString("id")=="empty_user") {   // 처음 가입하는 회원
-                    handleLogin(false, id, name, email, mobile)
-                } else {
-                    handleLogin(true, id, name, email, mobile)
-                }
-            },
-            Response.ErrorListener { err ->
-                Log.d("findUser", "error! $err")
-            }) {
-            override fun getBodyContentType(): String {
-                return "application/json"
-            }
-            override fun getBody(): ByteArray {
-                val param = HashMap<String, String>()
+                            if (JSONObject(msg).getString("id")=="empty_user") {   // 처음 가입하는 회원
+                                handleLogin(false, id, name, email, mobile)
+                            } else {
+                                handleLogin(true, id, name, email, mobile)
+                            }
+                        },
+                        Response.ErrorListener { err ->
+                            Log.d("findUser", "error! $err")
+                        }) {
+                        override fun getBodyContentType(): String {
+                            return "application/json"
+                        }
+                        override fun getBody(): ByteArray {
+                            val param = HashMap<String, String>()
                 param.put("id", id)
                 return JSONObject(param as Map<*, *>).toString().toByteArray()
             }

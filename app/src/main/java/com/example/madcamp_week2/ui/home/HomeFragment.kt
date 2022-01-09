@@ -64,12 +64,12 @@ class HomeFragment : Fragment() {
         binding.mainRecycler.adapter = homeItemAdapter
 
         items.apply {
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 0))
-//            add(ItemData("충전기", "1월 6일", 0))
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 500))
+            //add(ItemData("충전기", "1월 6일", 500))
+            //add(ItemData("충전기", "1월 6일", 500))
+            //add(ItemData("충전기", "1월 6일", 0))
+            //add(ItemData("충전기", "1월 6일", 0))
+            //add(ItemData("충전기", "1월 6일", 500))
+            //add(ItemData("충전기", "1월 6일", 500))
 
 
             homeItemAdapter.items = items

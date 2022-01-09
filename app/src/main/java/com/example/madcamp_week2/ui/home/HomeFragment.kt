@@ -78,22 +78,27 @@ class HomeFragment : Fragment() {
 
         val priceButton = binding.priceFilter
         val periodButton = binding.dateFilter
-        var priceFilter = -1
-        val dateFilter = -1
+        //var priceFilter = -1
+        //val dateFilter = -1
 
         priceButton.setOnClickListener {
             val priceSheet = BottomSheetPrice()
             priceSheet.show(parentFragmentManager, priceSheet.tag )
 
-            //val priceSheetView = layoutInflater.inflate(R.layout.search_filter_price, null, false)
-            //val belowTen = priceSheetView.findViewById<Button>(R.id.belowTen)
+            /*val priceSheetView = layoutInflater.inflate(R.layout.search_filter_price, null, false)
+            val belowTen = priceSheetView.findViewById<Button>(R.id.belowTen)
+            val tenToTwenty = priceSheetView.findViewById<Button>(R.id.tenToTewenty)
+            val twentyToThirty = priceSheetView.findViewById<Button>(R.id.twentyToThirty)
+            val thirtyToFourty = priceSheetView.findViewById<Button>(R.id.thirtyToFourty)
+            val fourtyToFifty = priceSheetView.findViewById<Button>(R.id.fourtyToFifty)
+            val aboveFifty = priceSheetView.findViewById<Button>(R.id.aboveFifty)
 
-            //var flag = Array<Int>(6) {_ -> 0}
-            //var btnArray = arrayOf(btn_seoul, btn_daejeon, btn_daegu, btn_busan, btn_chungcheong, btn_jeju)
+            var btnArray = arrayOf(belowTen, tenToTwenty, twentyToThirty, thirtyToFourty, fourtyToFifty, aboveFifty)
 
-            //belowTen.setOnClickListener {
-
-           // }
+            belowTen.setOnClickListener {
+                priceFilter = 1
+                Log.d("button", "$priceFilter")
+            }*/
         }
 
         periodButton.setOnClickListener {
@@ -102,13 +107,12 @@ class HomeFragment : Fragment() {
         }
 
 
-
         Log.d("place1", "$place")
-        serverGetItems(place, priceFilter)
+        serverGetItems(place/*, priceFilter*/)
 
     }
 
-    fun serverGetItems(place:String, priceFilter:Int) {
+    fun serverGetItems(place:String/*, priceFilter:Int*/) {
         Log.d("place", "$place")
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
@@ -130,9 +134,9 @@ class HomeFragment : Fragment() {
                         val item_price = JSONObject(resMsg).getString("item_price").toInt()
                         val item_place = JSONObject(resMsg).getString("item_place")
 
-                        if(priceFilter == -1) {
+                        //if(priceFilter == -1) {
                             add(ItemData(item_id, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
-                        }
+                        //}
 
 
                     }

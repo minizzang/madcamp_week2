@@ -36,6 +36,7 @@
                 android:background="@drawable/main_blue_outline"/>
 
             <Button
+                android:id="@+id/tenToTewenty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="10,000원 ~ 20,000원"
@@ -46,6 +47,7 @@
                 android:background="@drawable/main_blue_outline"/>
 
             <Button
+                android:id="@+id/twentyToThirty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="20,000원 ~ 30,000원"
@@ -56,6 +58,7 @@
                 android:background="@drawable/main_blue_outline"/>
 
             <Button
+                android:id="@+id/thirtyToFourty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="30,000원 ~ 40,000원"
@@ -66,6 +69,7 @@
                 android:background="@drawable/main_blue_outline"/>
 
             <Button
+                android:id="@+id/fourtyToFifty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="40,000원 ~ 50,000원"
@@ -76,6 +80,7 @@
                 android:background="@drawable/main_blue_outline"/>
 
             <Button
+                android:id="@+id/aboveFifty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="50,000원 초과"

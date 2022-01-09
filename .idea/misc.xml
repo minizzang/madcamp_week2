@@ -39,6 +39,7 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_round_right.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/drawable/white_round_square.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_add_post.xml" value="0.264" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_history.xml" value="0.2046875" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_item_detail.xml" value="0.2178060413354531" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_login.xml" value="0.178125" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -47,13 +48,16 @@
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_list_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/chatting_screen.xml" value="0.2" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_chat.xml" value="0.11367753623188406" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.5853242320819113" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.32558139534883723" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_items.xml" value="0.264" />
-        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/history_item.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/home_item_recycler.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/item_history_list.xml" value="0.14739583333333334" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/lend_item.xml" value="0.4" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/recieve_message.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/request_people_item.xml" value="0.4" />
+        <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/request_people_list.xml" value="0.18229166666666666" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_period.xml" value="0.178125" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/search_filter_price.xml" value="0.30409356725146197" />
         <entry key="..\:/Users/sho20/Desktop/madcamp_week2/app/src/main/res/layout/sent_message.xml" value="0.264" />
@@ -71,9 +75,6 @@
         <entry key="..\:/madcamp_week2/app/src/main/res/layout/fragment_home.xml" value="0.20923913043478262" />
         <entry key="..\:/madcamp_week2/app/src/main/res/layout/fragment_items.xml" value="0.18659420289855072" />
         <entry key="..\:/madcamp_week2/app/src/main/res/layout/fragment_profile.xml" value="0.1983695652173913" />
-        <entry key="..\:/madcamp_week2/app/src/main/res/layout/home_item_recycler.xml" value="0.4" />
-        <entry key="..\:/madcamp_week2/app/src/main/res/layout/sent_message.xml" value="0.20677083333333332" />
-        <entry key="..\:/madcamp_week2/app/src/main/res/layout/toolbar_main.xml" value="0.20677083333333332" />
         <entry key="..\:/madcamp_week2/app/src/main/res/layout/home_item_recycler.xml" value="0.28958333333333336" />
         <entry key="..\:/madcamp_week2/app/src/main/res/menu/bottom_nav_menu.xml" value="0.275" />
       </map>

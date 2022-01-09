@@ -52,6 +52,13 @@ class ProfileFragment : Fragment() {
         mobileView.text = obj.mobile
         placeView.text = obj.place
 
+        val historyBtn = binding.historyBtn
+
+        historyBtn.setOnClickListener {
+            val intent = Intent(requireContext(), HistoryActivity::class.java)
+            startActivity(intent)
+        }
+
 
         binding.btnNaverLogout.setOnClickListener {
             mOAuthLoginInstance.logout(context)

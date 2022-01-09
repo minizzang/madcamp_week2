@@ -20,14 +20,18 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:id="@+id/wrapProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/main_blue_square_round"
+                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:layout_margin="10dp"
                 tools:ignore="MissingConstraints">
+
+
 
                 <ImageView
                     android:layout_width="70dp"
@@ -58,7 +62,17 @@
                         android:text = "email@naver.com"
                         android:textSize="16sp"
                         android:layout_margin="10dp"/>
+
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/historyBtn"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="이력\n보기"
+                    android:layout_marginStart="30dp"
+                    android:background="@drawable/white_outline"/>
 
             </LinearLayout>
 
@@ -170,7 +184,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="30dp"
-                android:background="#1EC800"
+                android:background="@color/main_blue"
                 android:text="로그아웃"
                 android:textColor="#ffffff"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/item_square"
-        android:paddingTop="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
         tools:ignore="MissingConstraints">
 
         <ImageView

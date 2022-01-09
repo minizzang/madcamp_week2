@@ -1,4 +1,4 @@
-package com.example.madcamp_week2.ui.items
+package com.example.madcamp_week2.ui.profile
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.R
+import com.example.madcamp_week2.ui.items.ItemDataInList
 
 class BorrowItemAdapter (val context: Context, val itemArrayInList: ArrayList<ItemDataInList>) :
     RecyclerView.Adapter<BorrowItemAdapter.BorrowItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BorrowItemAdapter.BorrowItemViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BorrowItemViewHolder {
         return BorrowItemViewHolder(LayoutInflater.from(context).inflate(R.layout.history_item, parent, false))
     }
 

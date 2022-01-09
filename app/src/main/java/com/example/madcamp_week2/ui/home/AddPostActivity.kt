@@ -269,22 +269,20 @@ class AddPostActivity : AppCompatActivity() {
     }
 
     //갤러리에서 사진 불러오고 띄우기
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intent)
 
         val tempView = findViewById<ImageView>(R.id.iv_itemImage)
         val imageLoader = findViewById<ImageButton>(R.id.btn_image)
 
-        if (resultCode == Activity.RESULT_OK){
-            if (requestCode == GALLERY) {
-                var ImageData: Uri? = data?.data
-                try {
-                    imageLoader.visibility = View.INVISIBLE
-                    tempView.visibility = View.VISIBLE
-                    Glide.with(this).load(ImageData).into(tempView)
-                } catch (e:Exception) {
-                    e.printStackTrace()
-                }
+        if (requestCode == GALLERY && resultCode == Activity.RESULT_OK){
+            var currentImageURL : Uri? = intent?.data
+            try {
+                imageLoader.visibility = View.INVISIBLE
+                tempView.visibility = View.VISIBLE
+                Glide.with(this).load(currentImageURL).into(tempView)
+            } catch (e:Exception) {
+                e.printStackTrace()
             }
         }
     }

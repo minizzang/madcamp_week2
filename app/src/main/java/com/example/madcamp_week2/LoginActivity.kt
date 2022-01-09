@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
@@ -161,11 +162,12 @@ class LoginActivity : AppCompatActivity() {
             Request.Method.POST, "$baseURL"+"/api/findUser",
             Response.Listener<String> { res ->
                 Log.d("msg", "$res")
-                val msg = JSONObject(res).getString("val")
-                if (msg == "1") {   // 이미 가입한 회원
-                    handleLogin(true, id, name, email, mobile)
-                } else {
+                val msg :String = JSONArray(res)[0].toString();
+//                val msg = JSONObject(res).getString("val")
+                if (JSONObject(msg).getString("id")=="empty_user") {   // 처음 가입하는 회원
                     handleLogin(false, id, name, email, mobile)
+                } else {
+                    handleLogin(true, id, name, email, mobile)
                 }
             },
             Response.ErrorListener { err ->

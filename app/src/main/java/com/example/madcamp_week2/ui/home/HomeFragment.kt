@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         //검색창 위의 spinner
+        var place : String = ""
         var place_data = listOf("서울", "대전", "대구", "부산", "충청", "제주")
         var place_data_eng = listOf("seoul", "daejeon", "daegu", "busan", "chungcheong", "jeju")
         var adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, place_data)

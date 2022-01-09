@@ -59,7 +59,7 @@ class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeI
         private val itemDateStart: TextView = itemView.findViewById(R.id.tv_itemDateStartShow)
         private val itemDateEnd: TextView = itemView.findViewById(R.id.tv_itemDateEndShow)
         private val itemPrice: TextView = itemView.findViewById(R.id.tv_itemPriceShow)
-        private val itemImage: ImageView = itemView.findViewById(R.id.iv_itemImage)
+        private val itemImage: ImageView = itemView.findViewById(R.id.iv_itemImage_recycler)
 
         fun bind(item : ItemData) {
             itemName.text = item.name
@@ -67,10 +67,10 @@ class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeI
             itemDateEnd.text = item.date_end
             itemPrice.text = item.price.toString()+"원"
 
-            val imageBytes = Base64.decode(item.image, Base64.DEFAULT)
-            Log.d("---image---", "$imageBytes")
-            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-            itemImage.setImageBitmap(decodedImage)  // NULL image 처리 안해도 되나?
+//            val imageBytes = Base64.decode(item.image, Base64.DEFAULT)
+//            Log.d("---image---", "$imageBytes")
+//            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//            itemImage.setImageBitmap(decodedImage)  // NULL image 처리 안해도 되나?
 
             itemView.setOnClickListener{
 

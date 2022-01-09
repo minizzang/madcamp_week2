@@ -9,9 +9,9 @@
         android:id="@+id/requestNickname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp"
         android:text="nick name"
+        android:textColor="@color/text_black"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,10 +21,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="10dp"
         android:background="@drawable/main_blue_square_round"
         android:text="수락하기"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

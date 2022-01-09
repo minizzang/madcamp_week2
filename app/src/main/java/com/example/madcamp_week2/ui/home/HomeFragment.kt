@@ -2,6 +2,7 @@ package com.example.madcamp_week2.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +15,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.madcamp_week2.BASE_URL
 import com.example.madcamp_week2.MainActivity
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.databinding.FragmentHomeBinding
+import org.json.JSONArray
+import org.json.JSONObject
 
 
 class HomeFragment : Fragment() {
+    private val baseURL = BASE_URL
     lateinit var homeItemAdapter: HomeItemAdapter
-    val items = mutableListOf<ItemData>()
+    var place : String = "seoul"  //user의 place로 default value 변경하기
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -34,15 +43,16 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         //검색창 위의 spinner
-        var place : String = ""
         var place_data = listOf("서울", "대전", "대구", "부산", "충청", "제주")
+        var place_data_eng = listOf("seoul", "daejeon", "daegu", "busan", "chungcheong", "jeju")
         var adapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, place_data)
         val spinner = binding.spinner2
         spinner.adapter = adapter
         spinner.setSelection(0)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                place = place_data[p2]
+                place = place_data_eng[p2]
+                initRecycler()
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
@@ -63,19 +73,46 @@ class HomeFragment : Fragment() {
         homeItemAdapter = HomeItemAdapter(requireContext())
         binding.mainRecycler.adapter = homeItemAdapter
 
-        items.apply {
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 0))
-//            add(ItemData("충전기", "1월 6일", 0))
-//            add(ItemData("충전기", "1월 6일", 500))
-//            add(ItemData("충전기", "1월 6일", 500))
+        Log.d("place1", "$place")
+        serverGetItems(place)
 
+    }
 
-            homeItemAdapter.items = items
-            homeItemAdapter.notifyDataSetChanged()
-            binding.mainRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        }
+    fun serverGetItems(place:String) {
+        Log.d("place", "$place")
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = object : StringRequest(
+            Request.Method.GET, "$baseURL"+"/api/getItems/${place}",
+            Response.Listener<String> { res ->
+                val resArray = JSONArray(res)
+                val resArrayLength :Int = resArray.length()
+                val items = mutableListOf<ItemData>()
+
+                items.apply {
+                    for (i in 0 until resArrayLength) {
+                        val resMsg :String = JSONArray(res)[i].toString();
+
+                        val item_id = JSONObject(resMsg).getString("item_id")
+                        val item_name = JSONObject(resMsg).getString("item_name")
+                        val item_post_time = JSONObject(resMsg).getString("post_time")
+                        val item_date_start = JSONObject(resMsg).getString("item_date_start")
+                        val item_date_end = JSONObject(resMsg).getString("item_date_end")
+                        val item_price = JSONObject(resMsg).getString("item_price").toInt()
+                        val item_place = JSONObject(resMsg).getString("item_place")
+
+                        add(ItemData(item_id, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
+                    }
+                        homeItemAdapter.items = items
+                        homeItemAdapter.notifyDataSetChanged()
+                        binding.mainRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                    }
+
+            },
+            Response.ErrorListener { err ->
+                Log.d("getItems", "error! $err")
+            }){}
+
+        requestQueue.add(stringRequest)
     }
 
     override fun onDestroyView() {

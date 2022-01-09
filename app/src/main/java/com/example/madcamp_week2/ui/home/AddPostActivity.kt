@@ -14,12 +14,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.preference.PreferenceManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.madcamp_week2.R
-import com.example.madcamp_week2.VolleyService
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -30,8 +29,8 @@ import java.net.URL
 import java.util.*
 import kotlin.properties.Delegates
 import com.bumptech.glide.Glide
-import com.example.madcamp_week2.BASE_URL
-import com.example.madcamp_week2.MainActivity
+import com.example.madcamp_week2.*
+import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
@@ -100,21 +99,30 @@ class AddPostActivity : AppCompatActivity() {
             itemDateEnd = btn_dateEnd.text.toString()
             itemDescription = R.id.edit_addItemDescription.toString()
 
+            //shared preference data 읽어오기
+            val appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.applicationContext)
+            val gson = Gson()
+            var json = appSharedPrefs.getString("user", "")
+            var obj = gson.fromJson(json, User::class.java)
+            val user_id:String = obj.id.toString()
+
+            Log.d("user_id", "$user_id")
+
             val drawable = findViewById<ImageView>(R.id.iv_itemImage).drawable
-            val bitmapDrawable = drawable as BitmapDrawable
-            val bitmap = bitmapDrawable.bitmap
+            val bitmapDrawable = drawable as? BitmapDrawable
+            val bitmap = bitmapDrawable?.bitmap
             //bitmap to string
             val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val bytes = stream.toByteArray()
             itemImage = java.util.Base64.getEncoder().encodeToString(bytes)
 
             // db에 아이템 추가
-            serverAddItem(itemImage, itemName, itemPlace, itemPrice, itemDateStart, itemDateEnd, itemDescription)
+            serverAddItem(user_id, itemImage, itemName, itemPlace, itemPrice, itemDateStart, itemDateEnd, itemDescription)
         }
     }
 
-    fun serverAddItem(image:String, name:String, place:String, price:String, date_start:String, date_end:String, description:String) {
+    fun serverAddItem(user_id:String, image:String, name:String, place:String, price:String, date_start:String, date_end:String, description:String) {
         val requestQueue = Volley.newRequestQueue(this)
         val stringRequest = object : StringRequest(
             Request.Method.POST, "$baseURL"+"/api/addItem",
@@ -134,7 +142,7 @@ class AddPostActivity : AppCompatActivity() {
             }
             override fun getBody(): ByteArray {
                 val param = HashMap<String, String>()
-//                param.put("user_id", )
+                param.put("user_id", user_id)
                 param.put("item_image", image)
                 param.put("item_name", name)
                 param.put("item_place", place)

@@ -133,10 +133,18 @@ class HomeFragment : Fragment() {
                         val item_image = JSONObject(resMsg).getString("item_image")
                         val item_name = JSONObject(resMsg).getString("item_name")
                         val item_post_time = JSONObject(resMsg).getString("post_time")
-                        val item_date_start = JSONObject(resMsg).getString("item_date_start")
-                        val item_date_end = JSONObject(resMsg).getString("item_date_end")
+                        var item_date_start = JSONObject(resMsg).getString("item_date_start")
+                        var item_date_end = JSONObject(resMsg).getString("item_date_end")
                         val item_price = JSONObject(resMsg).getString("item_price").toInt()
                         val item_place = JSONObject(resMsg).getString("item_place")
+
+                        fun dateFormat (input : String) : String{
+                            var token = input.chunked(10)
+                            return token[0]
+                        }
+
+                        item_date_start = dateFormat(item_date_start)
+                        item_date_end = dateFormat(item_date_end)
 
                         //if(priceFilter == -1) {
                             add(ItemData(item_id, item_image, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))

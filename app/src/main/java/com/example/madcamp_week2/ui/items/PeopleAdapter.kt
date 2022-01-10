@@ -19,7 +19,7 @@ import com.example.madcamp_week2.R
 import org.json.JSONObject
 import java.util.HashMap
 
-class PeopleAdapter (val context: Context, val peopleInList: ArrayList<String>) :
+class PeopleAdapter (val context: Context, val peopleInList: ArrayList<PeopleData>) :
     RecyclerView.Adapter<PeopleAdapter.PeopleViewHolder>() {
     private val baseURL = BASE_URL
 
@@ -32,13 +32,7 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<String>) 
     }
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
-        val item = peopleInList[position]
-
-        for(i in 0 until peopleInList.size)
-        {
-            Log.d("check", peopleInList[i])
-        }
-
+        val item = peopleInList[position].nickName
         holder.bindPeople(item)
     }
 

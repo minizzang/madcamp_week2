@@ -191,7 +191,7 @@ class ItemsFragment : Fragment() {
 
                 Log.d("result", res)
 
-                var peopleArray = ArrayList<String>()
+                var peopleArray = ArrayList<PeopleData>()
 
                 for (i in 0 until resArrayLength) {
 
@@ -199,7 +199,7 @@ class ItemsFragment : Fragment() {
                     val nickname = JSONObject(resObj).getString("nickname")
                     val to_user = JSONObject(resObj).getString("to_user")
 
-                    peopleArray.add(nickname)
+                    peopleArray.add(PeopleData(itemId, to_user, nickname))
 
                 }
 

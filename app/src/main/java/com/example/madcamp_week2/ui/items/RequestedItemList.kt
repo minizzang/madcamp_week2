@@ -4,5 +4,5 @@ import androidx.recyclerview.widget.RecyclerView
 
 data class RequestedItemList(
     val itemName : String,
-    var peopleList : ArrayList<String>
+    var peopleList : ArrayList<PeopleData>
 )

@@ -1,6 +1,7 @@
 package com.example.madcamp_week2.ui.items
 
 import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.madcamp_week2.BASE_URL
 import com.example.madcamp_week2.R
+import com.example.madcamp_week2.User
+import com.google.gson.Gson
 import org.json.JSONObject
 import java.util.HashMap
 
@@ -32,16 +35,25 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<PeopleDat
     }
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
-        val item = peopleInList[position].nickName
-        holder.bindPeople(item)
+        val nickName = peopleInList[position].nickName
+        val toUser = peopleInList[position].toUser
+        val itemId = peopleInList[position].itemId
+        holder.bindPeople(nickName, toUser, itemId)
     }
 
     inner class PeopleViewHolder(view: View) : RecyclerView.ViewHolder(view){
+        //shared preference data 읽어오기
+        val appSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val gson = Gson()
+        var json = appSharedPrefs.getString("user", "")
+        var obj = gson.fromJson(json, User::class.java)
+        val user_id:String = obj.id.toString()
+
         var hNickName = itemView.findViewById<TextView>(R.id.requestNickname)
         var acceptbtn = itemView.findViewById<Button>(R.id.acceptBtn)
 
-        fun bindPeople(peopleInList: String){
-            hNickName.text = peopleInList
+        fun bindPeople(nickName: String, toUser: String, itemId: String){
+            hNickName.text = nickName
 
             acceptbtn.setOnClickListener {
                 val alertDialog = AlertDialog.Builder(itemView.context)
@@ -50,7 +62,7 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<PeopleDat
                         Toast.makeText(itemView.context, "빌리기가 체결되었습니다.", Toast.LENGTH_SHORT).show()
 
                         //db에 계약 체결 보내기
-//                        serverConfirmBorrow()
+                        serverConfirmBorrow(user_id, toUser, itemId)
                    }
                     .setNegativeButton("취소") { dialog, which ->
                         Toast.makeText(itemView.context, "취소되었습니다.", Toast.LENGTH_SHORT).show()
@@ -64,40 +76,34 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<PeopleDat
 
     }
 
-//    private fun serverConfirmBorrow(from_user:String, to_user:String, item_id:String) {
-//        val requestQueue = Volley.newRequestQueue(this)
-//        Log.d("try", "server add item")
-//        Log.d("try", "id:$user_id, id:$image, id:$name, id:$place, id:$price, id:$date_start, id:$date_end, id:$description")
-//
-//        val stringRequest = object : StringRequest(
-//            Request.Method.POST, "$baseURL"+"/api/confirmBorrow",
-//            Response.Listener<String> { res ->
-//                val msg = JSONObject(res).getString("msg")
-//                if (msg == "addItems successed") {
-//                    Log.d("addItem", "res : $msg")
-//
-//                }
-//            },
-//            Response.ErrorListener { err ->
-//                Log.d("addItem", "error! $err")
-//            }) {
-//            override fun getBodyContentType(): String {
-//                return "application/json"
-//            }
-//            override fun getBody(): ByteArray {
-//                val param = HashMap<String, String>()
-//                param.put("user_id", user_id)
-//                param.put("item_image", image)
-//                param.put("item_name", name)
-//                param.put("item_place", place)
-//                param.put("item_date_start", date_start)
-//                param.put("item_date_end", date_end)
-//                param.put("item_price", price)
-//                param.put("item_description", description)
-//
-//                return JSONObject(param as Map<*, *>).toString().toByteArray()
-//            }
-//        }
-//        requestQueue.add(stringRequest)
-//    }
+    private fun serverConfirmBorrow(from_user:String, to_user:String, item_id:String) {
+        val requestQueue = Volley.newRequestQueue(context)
+
+        Log.d("serverConfirmBorrow", "from_user:$from_user, to_user:$to_user, item_id:$item_id")
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, "$baseURL"+"/api/confirmBorrow",
+            Response.Listener<String> { res ->
+                val msg = JSONObject(res).getString("msg")
+                if (msg == "confirmBorrow Succeeded") {
+                    Log.d("confirmBorrow", "res : $msg")
+                }
+            },
+            Response.ErrorListener { err ->
+                Log.d("confirmBorrow", "error! $err")
+            }) {
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+            override fun getBody(): ByteArray {
+                val param = HashMap<String, String>()
+                param.put("from_user", from_user)
+                param.put("to_user", to_user)
+                param.put("item_id", item_id)
+
+                return JSONObject(param as Map<*, *>).toString().toByteArray()
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
 }

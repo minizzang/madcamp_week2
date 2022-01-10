@@ -52,7 +52,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/requestPeople"
         android:layout_width="match_parent"

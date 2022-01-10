@@ -1,6 +1,7 @@
 package com.example.madcamp_week2.ui.items
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +25,12 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<String>) 
 
     override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
         val item = peopleInList[position]
+
+        for(i in 0 until peopleInList.size)
+        {
+            Log.d("check", peopleInList[i])
+        }
+
         holder.bindPeople(item)
     }
 

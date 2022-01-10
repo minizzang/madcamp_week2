@@ -2,6 +2,7 @@ package com.example.madcamp_week2.ui.items
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -21,6 +23,7 @@ import com.example.madcamp_week2.databinding.FragmentItemsBinding
 import com.example.madcamp_week2.ui.home.ItemDetailActivity
 import com.google.gson.Gson
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
@@ -31,11 +34,11 @@ class ItemsFragment : Fragment() {
     private var _binding: FragmentItemsBinding? = null
     lateinit var requestListView : RecyclerView //내가 신청한 물건 RV
     lateinit var peopleItemListView : RecyclerView //올린 아이템 가로 RV
+    lateinit var peopleListView : RecyclerView //세로 RV
 
     private val requestItemArray = ArrayList<ItemDataInList>() //신청 목록 list
     val peopleListArray = ArrayList<RequestedItemList>()
-    val peopleArray = ArrayList<String>()
-    //val tempArray = ArrayList<ArrayList<String>>()
+    //val peopleArray = ArrayList<String>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -56,6 +59,7 @@ class ItemsFragment : Fragment() {
 
         requestListView = binding.requestedList
         peopleItemListView = binding.requestPeople
+        peopleListView = inflater.inflate(R.layout.request_people_list, container, false).findViewById(R.id.peopleRV)
 
 
         var adapterRequest = RequestItemAdapter(requireContext(), requestItemArray)
@@ -63,31 +67,17 @@ class ItemsFragment : Fragment() {
         requestListView.adapter = adapterRequest
         requestListView.adapter!!.notifyDataSetChanged()
 
-        //peopleItemListView.adapter = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
-
-
-
-        //var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
-        //peopleItemListView.adapter = adapterPeopleList
-        //peopleItemListView.adapter!!.notifyDataSetChanged()
 
 
         serverGetBorrowReqItems(user_id)
+        serverGetMyItemPosted(user_id)
 
-        fun startAdapter() = runBlocking {
-            coroutineScope {
-                launch {
-                    serverGetMyItemPosted(user_id)
-                }
+        var peopleListAdapter = PeopleListAdapter(requireContext(), peopleListArray/*, peopleAdapter, peopleArray*/)
+        var linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        peopleItemListView.layoutManager = linearLayoutManager
+        peopleItemListView.adapter = peopleListAdapter
+        peopleItemListView.adapter!!.notifyDataSetChanged()
 
-                var peopleListAdapter = PeopleListAdapter(requireContext(), peopleListArray)
-
-                peopleItemListView.adapter = peopleListAdapter
-                peopleItemListView.adapter!!.notifyDataSetChanged()
-            }
-        }
-
-        startAdapter()
 
         return root
     }
@@ -165,57 +155,16 @@ class ItemsFragment : Fragment() {
                 val resArrayLength :Int = resArray.length()
 
 
-
-                Log.d("length", peopleArray.size.toString())
-
-
                 for (i in 0 until resArrayLength) {
 
                     val resObj = JSONArray(res)[i].toString()
                     val item_id = JSONObject(resObj).getString("item_id")
                     val item_name = JSONObject(resObj).getString("item_name")
-                    peopleArray.clear()
-                    val stringRequest2 = object : StringRequest(
-                        Request.Method.GET, "$baseURL"+"/api/getPeopleReqItemToMe/${user_id}/${item_id}",
-                        Response.Listener<String> { res ->
-                            val resArray = JSONArray(res)
-                            val resArrayLength :Int = resArray.length()
 
-                            Log.d("result", res)
-                            Log.d("l", resArrayLength.toString())
 
-                            for (i in 0 until resArrayLength) {
-
-                                val resObj = JSONArray(res)[i].toString()
-                                val nickname = JSONObject(resObj).getString("nickname")
-
-                                //serverGetUserNickname2(toUserId, itemName)
-                                peopleArray.add(nickname)
-
-                                Log.d("name", nickname)
-
-                            }
-
-                            Log.d("people array", peopleArray.size.toString())
-                            Log.d("big list", "$item_name")
-
-                        },
-                        Response.ErrorListener { err ->
-                            Log.d("GetPeopleReqItemToMe", "error! $err")
-                        }){}
-
-                    requestQueue.add(stringRequest2)
-
-                    peopleListArray.add(RequestedItemList(item_name, peopleArray))
-                    peopleItemListView.adapter?.notifyDataSetChanged()
-
-                    Log.d("people array length1", peopleListArray.size.toString())
+                    serverGetPeopleReqItemToMe(user_id, item_id, item_name)
 
                 }
-
-                //peopleListArray.clear()
-                //Log.d("temp", tempArray.size.toString())
-
 
             },
             Response.ErrorListener { err ->
@@ -227,9 +176,9 @@ class ItemsFragment : Fragment() {
 
     }
 
-   /* private fun serverGetPeopleReqItemToMe(userId: String, itemId: String, itemName: String) {
+    fun serverGetPeopleReqItemToMe(userId: String, itemId: String, itemName: String) {
         val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest2 = object : StringRequest(
+        val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getPeopleReqItemToMe/${userId}/${itemId}",
             Response.Listener<String> { res ->
                 val resArray = JSONArray(res)
@@ -237,20 +186,21 @@ class ItemsFragment : Fragment() {
 
                 Log.d("result", res)
 
-
-                Log.d("l", resArrayLength.toString())
+                var peopleArray = ArrayList<String>()
 
                 for (i in 0 until resArrayLength) {
 
                     val resObj = JSONArray(res)[i].toString()
                     val nickname = JSONObject(resObj).getString("nickname")
 
-                    //serverGetUserNickname2(toUserId, itemName)
                     peopleArray.add(nickname)
 
                 }
-                peopleItemListView.adapter?.notifyDataSetChanged()
-                peopleArray.clear()
+
+                Log.d("l", resArrayLength.toString())
+                peopleListArray.add(RequestedItemList(itemName, peopleArray))
+                peopleItemListView.adapter!!.notifyDataSetChanged()
+
 
                 Log.d("people array", peopleArray.size.toString())
                 Log.d("big list", "$itemName")
@@ -260,29 +210,8 @@ class ItemsFragment : Fragment() {
                 Log.d("GetPeopleReqItemToMe", "error! $err")
             }){}
 
-        requestQueue.add(stringRequest2)
-    }*/
-
-    /*private fun serverGetUserNickname2(toUserId: String, itemName: String) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = object : StringRequest(
-            Request.Method.GET, "$baseURL"+"/api/getUserNickname/${toUserId}",
-            Response.Listener<String> { res ->
-                val resArray = JSONArray(res)
-                val resObj = JSONArray(res)[0].toString()
-                val ownerNickName = JSONObject(resObj).getString("nickname")
-                Log.d("small list", "$itemName, $ownerNickName")
-
-
-            },
-            Response.ErrorListener { err ->
-                Log.d("GetUserNickname", "error! $err")
-            }){}
-
         requestQueue.add(stringRequest)
-    }*/
-
-
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

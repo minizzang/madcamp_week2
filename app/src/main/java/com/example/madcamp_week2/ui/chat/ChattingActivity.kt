@@ -53,7 +53,7 @@ class ChattingActivity : AppCompatActivity() {
 
         val obj = RoomData()
         username = "x3n7UQdmtP-5chFwbPNv6J2Xs-9I6yB9Ju-7RFc64Us"
-        roomNum = "9"
+        roomNum = "12"
         obj.setRoomData(username, roomNum)
 
         //send user and room info.

@@ -67,7 +67,11 @@ class ItemDetailActivity : AppCompatActivity() {
             alertDialog.show()
         }
 
-        //va
+        val backButton = findViewById<Button>(R.id.itemDetailBack)
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 
     fun serverGetItemDetail(item_id :String) {

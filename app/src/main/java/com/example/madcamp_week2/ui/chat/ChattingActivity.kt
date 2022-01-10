@@ -22,8 +22,10 @@ import io.socket.client.Socket
 import org.json.JSONArray
 import org.json.JSONObject
 import java.net.URISyntaxException
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ChattingActivity : AppCompatActivity() {
 
@@ -36,6 +38,8 @@ class ChattingActivity : AppCompatActivity() {
     var adapter = ChattingAdapter(this)
 
     var gson = Gson()
+
+    //var getMessage = ArrayList<MessageData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +91,7 @@ class ChattingActivity : AppCompatActivity() {
         val contentView = findViewById<EditText>(R.id.inputMessage)
         val sendButton = findViewById<Button>(R.id.sendButton)
 
+
         //connect recycler view adapter
         chattingView = findViewById(R.id.chattingRV)
         chattingView.layoutManager = LinearLayoutManager(applicationContext)
@@ -103,7 +108,7 @@ class ChattingActivity : AppCompatActivity() {
             val text = contentView.text.toString()
             message.setMessageData("Message", userid, roomNum, text, System.currentTimeMillis())
             //message data db에 저장
-            serverSaveChat(roomNum, userid, text)
+            serverSaveChat(roomNum, userid, text, toDate(System.currentTimeMillis()))
 
             fun sendMessage(){
                 //새로운 message server에 보냄
@@ -120,11 +125,11 @@ class ChattingActivity : AppCompatActivity() {
         //상대가 새로운 message 보냈을 때 chatting list에 추가
         mSocket.on("update") { args ->
             val data: MessageData = gson.fromJson(args[0].toString(), MessageData::class.java)
-            addChat(data)
+            //addChat(data)
         }
     }
 
-    private fun serverSaveChat(roomNum: String, userid: String, text: String) {
+    private fun serverSaveChat(roomNum: String, userid: String, text: String , timestamp: String) {
         val requestQueue = Volley.newRequestQueue(this)
         Log.d("saveChat", "id:$roomNum, id:$userid, id:$text")
 
@@ -147,6 +152,7 @@ class ChattingActivity : AppCompatActivity() {
                 param.put("room_id", roomNum)
                 param.put("from_user", userid)
                 param.put("content", text)
+                param.put("timestamp", timestamp)
 
                 return JSONObject(param as Map<*, *>).toString().toByteArray()
             }
@@ -163,13 +169,28 @@ class ChattingActivity : AppCompatActivity() {
                 val resArray = JSONArray(res)
                 val resArrayLength :Int = resArray.length()
 
+                fun dateFormat (input : String) : String{
+                    var token = input.chunked(10)
+                    return token[0].substring(2)
+                }
+
                 for (i in 0 until resArrayLength) {
                     val resObj = JSONArray(res)[i].toString()
                     val message_id = JSONObject(resObj).getString("message_id")
                     val from_user = JSONObject(resObj).getString("from_user")
                     val content = JSONObject(resObj).getString("content")
+                    val timeStamp = JSONObject(resObj).getString("timestamp")
 
-                    Log.d("result", "$message_id, $from_user, $content")
+                    //MessageData().setMessageData("Message", from_user, roomId, content, timeStamp)
+                    if(from_user == userid) {
+                        adapter.addItem(ChatItem(userid, content, timeStamp, ChatType.RIGHT_MESSAGE))
+                    }
+                    else {
+                        adapter.addItem(ChatItem(from_user, content, timeStamp, ChatType.LEFT_MESSAGE))
+                    }
+
+
+                    Log.d("result", "$message_id, $from_user, $content, $timeStamp")
                 }
             },
             Response.ErrorListener { err ->
@@ -194,10 +215,10 @@ class ChattingActivity : AppCompatActivity() {
                 adapter.addItem(ChatItem(from, content, time, ChatType.LEFT_MESSAGE))
                 chattingView.scrollToPosition(adapter.itemCount - 1)
             }
-            /*else{
+            else{
                 adapter.addItem(ChatItem(from, content, time, ChatType.LEFT_MESSAGE))
                 chattingView.scrollToPosition(adapter.itemCount - 1)
-            }*/
+            }
         }
     }
 

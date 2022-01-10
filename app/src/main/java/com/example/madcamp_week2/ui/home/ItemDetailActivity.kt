@@ -64,12 +64,6 @@ class ItemDetailActivity : AppCompatActivity() {
         startChatting.setOnClickListener() {
             // db에 user1, user2 id 저장
             serverGetRoomNum(from_user, to_user)
-
-            val intent = Intent(this, ChattingActivity::class.java)
-            intent.putExtra("room_id", room_id)
-            Log.d("room number", room_id)
-            intent.putExtra("user_id", to_user)  //현재 로그인한 계정 주인 id
-            this.startActivity(intent)
         }
 
         //va
@@ -154,6 +148,13 @@ class ItemDetailActivity : AppCompatActivity() {
                 } else {
                     Log.d("roomNum", ": $msg")
                     room_id = msg
+
+                    val intent = Intent(this, ChattingActivity::class.java)
+                    intent.putExtra("room_id", room_id)
+                    Log.d("room number", room_id)
+                    intent.putExtra("user_id", to_user)  //현재 로그인한 계정 주인 id
+                    this.startActivity(intent)
+
                 }
             },
             Response.ErrorListener { err ->

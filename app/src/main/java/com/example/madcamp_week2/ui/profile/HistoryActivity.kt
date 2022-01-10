@@ -114,7 +114,7 @@ class HistoryActivity : AppCompatActivity() {
 
                 fun dateFormat (input : String) : String{
                     var token = input.chunked(10)
-                    return token[0]
+                    return token[0].substring(2)
                 }
 
                 val resObj = JSONArray(res)[0].toString()

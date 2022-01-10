@@ -140,7 +140,7 @@ class HomeFragment : Fragment() {
 
                         fun dateFormat (input : String) : String{
                             var token = input.chunked(10)
-                            return token[0]
+                            return token[0].substring(2)
                         }
 
                         item_date_start = dateFormat(item_date_start)

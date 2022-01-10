@@ -87,12 +87,18 @@ class ItemDetailActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getItemDetail/${item_id}",
             Response.Listener<String> { res ->
+
+                fun dateFormat (input : String) : String{
+                    var token = input.chunked(10)
+                    return token[0]
+                }
+
                 val resObj = JSONArray(res)[0].toString()
                 val item_name = JSONObject(resObj).getString("item_name")
                 val item_place = JSONObject(resObj).getString("item_place")
                 val item_price = JSONObject(resObj).getString("item_price")
-                val item_date_start = JSONObject(resObj).getString("item_date_start")
-                val item_date_end = JSONObject(resObj).getString("item_date_end")
+                val item_date_start = dateFormat(JSONObject(resObj).getString("item_date_start"))
+                val item_date_end = dateFormat(JSONObject(resObj).getString("item_date_end"))
                 val item_description = JSONObject(resObj).getString("item_description")
 
                 findViewById<TextView>(R.id.ItemNameDetail).text = item_name

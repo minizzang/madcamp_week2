@@ -112,10 +112,16 @@ class ItemsFragment : Fragment() {
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getItemDetail/${itemId}",
             Response.Listener<String> { res ->
+
+                fun dateFormat (input : String) : String{
+                    var token = input.chunked(10)
+                    return token[0].substring(2)
+                }
+
                 val resObj = JSONArray(res)[0].toString()
                 val item_name = JSONObject(resObj).getString("item_name")
-                val item_date_start = JSONObject(resObj).getString("item_date_start")
-                val item_date_end = JSONObject(resObj).getString("item_date_end")
+                val item_date_start = dateFormat(JSONObject(resObj).getString("item_date_start"))
+                val item_date_end = dateFormat(JSONObject(resObj).getString("item_date_end"))
 
                 serverGetUserNickname(ownerId, item_name, item_date_start, item_date_end)
             },

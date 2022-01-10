@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -29,11 +30,6 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
-//        for(i: Int in 0..10) {
-//            lendItemArray.add(ItemDataInList("충전기", "minsuh", "21-01-01 ~ 21-01-03"))
-//            borrowItemArray.add(ItemDataInList("명품백", "hello", "21-12-23 ~ 21-12-31"))
-//        }
-
         //shared preference에서 user_id 가져오기
         val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val gson = Gson()
@@ -53,6 +49,12 @@ class HistoryActivity : AppCompatActivity() {
 
         lendListView.adapter = adapterLend
         borrowListView.adapter = adapterBorrow
+
+        val backBtn = findViewById<Button>(R.id.historyBack)
+
+        backBtn.setOnClickListener {
+            finish()
+        }
 
     }
 
@@ -109,10 +111,16 @@ class HistoryActivity : AppCompatActivity() {
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getItemDetail/${itemId}",
             Response.Listener<String> { res ->
+
+                fun dateFormat (input : String) : String{
+                    var token = input.chunked(10)
+                    return token[0]
+                }
+
                 val resObj = JSONArray(res)[0].toString()
                 val item_name = JSONObject(resObj).getString("item_name")
-                val item_date_start = JSONObject(resObj).getString("item_date_start")
-                val item_date_end = JSONObject(resObj).getString("item_date_end")
+                val item_date_start = dateFormat(JSONObject(resObj).getString("item_date_start"))
+                val item_date_end = dateFormat(JSONObject(resObj).getString("item_date_end"))
 
                 serverGetUserNickname(userId, item_name, item_date_start, item_date_end, index)
             },

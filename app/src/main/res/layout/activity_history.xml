@@ -8,6 +8,20 @@
     android:orientation="vertical"
     tools:context=".ui.profile.HistoryActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp">
+
+        <Button
+            android:id="@+id/historyBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_round_arrow_back_ios_24"/>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/lendText"
         android:layout_width="wrap_content"

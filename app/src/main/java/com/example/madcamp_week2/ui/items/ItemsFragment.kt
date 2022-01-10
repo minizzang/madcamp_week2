@@ -165,7 +165,7 @@ class ItemsFragment : Fragment() {
                 }
 
                 Log.d("length", peopleArray.size.toString())
-                peopleItemListView.adapter!!.notifyDataSetChanged()
+
             },
             Response.ErrorListener { err ->
                 Log.d("GetMyItemPosted", "error! $err")
@@ -211,6 +211,7 @@ class ItemsFragment : Fragment() {
                 Log.d("small list", "$itemName, $ownerNickName")
 
                 peopleArray.add(ownerNickName)
+                peopleItemListView.adapter!!.notifyDataSetChanged()
             },
             Response.ErrorListener { err ->
                 Log.d("GetUserNickname", "error! $err")

@@ -176,10 +176,10 @@ class ItemsFragment : Fragment() {
 
                 }
 
-                var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
-                peopleItemListView.adapter = adapterPeopleList
-
-                peopleItemListView.adapter?.notifyDataSetChanged()
+//                var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
+//                peopleItemListView.adapter = adapterPeopleList
+//
+//                peopleItemListView.adapter?.notifyDataSetChanged()
 
 
 

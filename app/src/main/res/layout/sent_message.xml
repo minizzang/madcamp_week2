@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/sentMessage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/sent_message_background"
         android:padding="12dp"
         android:textColor="@color/black"
         android:textSize="13sp"
+        android:text="test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.8"/>

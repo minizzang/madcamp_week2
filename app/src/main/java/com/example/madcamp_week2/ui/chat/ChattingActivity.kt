@@ -125,7 +125,7 @@ class ChattingActivity : AppCompatActivity() {
         //상대가 새로운 message 보냈을 때 chatting list에 추가
         mSocket.on("update") { args ->
             val data: MessageData = gson.fromJson(args[0].toString(), MessageData::class.java)
-            //addChat(data)
+            addChat(data)
         }
     }
 
@@ -212,10 +212,6 @@ class ChattingActivity : AppCompatActivity() {
             //chattingView.scrollToPosition(adapter.itemCount - 1)
             //상대가 보낸 message 추가
             if(userid != data.getFrom()){
-                adapter.addItem(ChatItem(from, content, time, ChatType.LEFT_MESSAGE))
-                chattingView.scrollToPosition(adapter.itemCount - 1)
-            }
-            else{
                 adapter.addItem(ChatItem(from, content, time, ChatType.LEFT_MESSAGE))
                 chattingView.scrollToPosition(adapter.itemCount - 1)
             }

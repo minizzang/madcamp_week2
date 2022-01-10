@@ -45,15 +45,15 @@ class ChattingActivity : AppCompatActivity() {
         }
 
         val intent = intent
-        //username = intent.getStringExtra("username").toString()
-        //num = intent.getStringExtra("num").toString()
+        username = intent.getStringExtra("user_id").toString()
+        roomNum = intent.getStringExtra("room_id").toString()
 
         //socket connection
         mSocket.connect()
 
         val obj = RoomData()
-        username = "x3n7UQdmtP-5chFwbPNv6J2Xs-9I6yB9Ju-7RFc64Us"
-        roomNum = "12"
+//        username = "usernametest2"  // user_id
+//        roomNum = "1"
         obj.setRoomData(username, roomNum)
 
         //send user and room info.

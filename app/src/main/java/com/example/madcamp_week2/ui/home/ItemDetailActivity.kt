@@ -27,6 +27,7 @@ class ItemDetailActivity : AppCompatActivity() {
     lateinit var from_user:String   //빌려주는 사람
     lateinit var to_user:String     //빌리는 사람
     lateinit var item_id:String
+    var room_id:String = ""
     private val baseURL = BASE_URL
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +66,13 @@ class ItemDetailActivity : AppCompatActivity() {
                 .create()
 
             alertDialog.show()
+        }
+
+        val startChatting = findViewById<Button>(R.id.startChatting)
+
+        startChatting.setOnClickListener() {
+            // db에 user1, user2 id 저장
+            serverGetRoomNum(from_user, to_user)
         }
 
         val backButton = findViewById<Button>(R.id.itemDetailBack)
@@ -135,6 +143,43 @@ class ItemDetailActivity : AppCompatActivity() {
                 param.put("from_user", from_user)
                 param.put("to_user", to_user)
                 param.put("contract_item", item_id)
+                return JSONObject(param as Map<*, *>).toString().toByteArray()
+            }
+        }
+        requestQueue.add(stringRequest)
+    }
+
+
+    fun serverGetRoomNum(user1_id:String, user2_id:String) {
+        val requestQueue = Volley.newRequestQueue(this)
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, "$baseURL"+"/api/getRoomNum",
+            Response.Listener<String> { res ->
+                val msg = JSONObject(res).getString("msg")
+                if (msg == "getRoomNum failed") {
+                    Log.d("serverGetRoomNum", ": $msg")
+                } else {
+                    Log.d("roomNum", ": $msg")
+                    room_id = msg
+
+                    val intent = Intent(this, ChattingActivity::class.java)
+                    intent.putExtra("room_id", room_id)
+                    Log.d("room number", room_id)
+                    intent.putExtra("user_id", to_user)  //현재 로그인한 계정 주인 id
+                    this.startActivity(intent)
+
+                }
+            },
+            Response.ErrorListener { err ->
+                Log.d("getRoomNum", "error! $err")
+            }) {
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+            override fun getBody(): ByteArray {
+                val param = HashMap<String, String>()
+                param.put("user1_id", user1_id)
+                param.put("user2_id", user2_id)
                 return JSONObject(param as Map<*, *>).toString().toByteArray()
             }
         }

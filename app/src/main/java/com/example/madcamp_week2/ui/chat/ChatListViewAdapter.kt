@@ -2,6 +2,7 @@ package com.example.madcamp_week2.ui.chat
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,10 +47,16 @@ class ChatListViewAdapter(val context: Context, val dataArray: ArrayList<ChatLis
         //binding data
         fun bind(dataArray: ChatListData){
             holderName.text = dataArray.name
-            holderMessage.text = dataArray.chatText
+            val room_id = dataArray.room_id
+            val user_id = dataArray.user_id
+//            holderMessage.text = dataArray.chatText
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ChattingActivity::class.java)
+
+                intent.putExtra("room_id", room_id)
+                intent.putExtra("user_id", user_id)  //현재 로그인한 계정 주인 id
+
                 context.startActivity(intent)
             }
 

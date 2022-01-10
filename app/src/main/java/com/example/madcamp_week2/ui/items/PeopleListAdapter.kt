@@ -19,7 +19,7 @@ import kotlinx.coroutines.delay
 import org.json.JSONArray
 import org.json.JSONObject
 
-class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<RequestedItemList>, /*val peopleAdapter: PeopleAdapter, val peopleList: ArrayList<String>*/) :
+class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<RequestedItemList>) :
     RecyclerView.Adapter<PeopleListAdapter.PeopleListViewHolder>() {
 
     val viewPool : RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()

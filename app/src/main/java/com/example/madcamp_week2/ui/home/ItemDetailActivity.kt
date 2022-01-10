@@ -60,11 +60,14 @@ class ItemDetailActivity : AppCompatActivity() {
                 .setMessage("상대가 수락 시 빌리기가 체결됩니다.")
                 .setPositiveButton("확인") { dialog, which ->
                     Toast.makeText(this, "신청되었습니다!", Toast.LENGTH_SHORT).show()
+                    //val intent = Intent(applicationContext, HomeFragment::class.java)
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    //finish()
+                    //applicationContext.startActivity(intent)
                 }
                 .create()
 
             alertDialog.show()
-
         }
     }
 

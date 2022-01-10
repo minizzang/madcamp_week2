@@ -1,5 +1,6 @@
 package com.example.madcamp_week2.ui.home
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,8 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import android.widget.TextView
 import com.android.volley.Request
 import com.android.volley.Response
@@ -52,6 +55,19 @@ class ItemDetailActivity : AppCompatActivity() {
 
         borrowItem.setOnClickListener {
             serverBorrowItem(from_user, to_user, item_id)
+
+            val alertDialog = AlertDialog.Builder(this)
+                .setMessage("상대가 수락 시 빌리기가 체결됩니다.")
+                .setPositiveButton("확인") { dialog, which ->
+                    Toast.makeText(this, "신청되었습니다!", Toast.LENGTH_SHORT).show()
+                    //val intent = Intent(applicationContext, HomeFragment::class.java)
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    //finish()
+                    //applicationContext.startActivity(intent)
+                }
+                .create()
+
+            alertDialog.show()
         }
     }
 

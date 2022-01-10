@@ -15,6 +15,8 @@ import com.example.madcamp_week2.R
 class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<RequestedItemList>, val peopleArray: ArrayList<String>) :
     RecyclerView.Adapter<PeopleListAdapter.PeopleListViewHolder>() {
 
+    val viewPool : RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : PeopleListAdapter.PeopleListViewHolder{
         return PeopleListViewHolder(LayoutInflater.from(context).inflate(R.layout.request_people_list, parent, false))
     }
@@ -37,12 +39,13 @@ class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<Re
             hItemName.text = peopleList.itemName
 
 
-            val layoutManager = LinearLayoutManager(hpersonList.context, LinearLayoutManager.VERTICAL, false)
-            //layoutManager.initialPrefetchItemCount = item.peopleList.size
+            val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            layoutManager.recycleChildrenOnDetach = true
 
             val peopleAdapter = PeopleAdapter(context, peopleArray)
             hpersonList.layoutManager = layoutManager
             hpersonList.adapter = peopleAdapter
+            hpersonList.setRecycledViewPool(viewPool)
 
         }
 

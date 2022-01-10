@@ -199,8 +199,16 @@ class AddPostActivity : AppCompatActivity() {
         // 등록하기 버튼을 눌렀을 때
         findViewById<Button>(R.id.btn_summit).setOnClickListener {
             itemName = findViewById<EditText>(R.id.edit_addItemName).text.toString()
-//            itemPlace = findViewById<EditText>(R.id.edit_addItemPlace).text.toString()  // 민서씨 이거 수정해주세요~
-            itemPlace = "daejeon"
+            var c = checkflag()
+            var place_data = listOf("seoul", "daejeon", "daegu", "busan", "chungcheong", "jeju")
+
+            if(c == -1){
+                Toast.makeText(this, "지역을 선택해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                itemPlace = place_data[c]
+            }
+
             itemPrice = findViewById<EditText>(R.id.edit_addItemPrice).text.toString()
             itemDateStart = btn_dateStart.text.toString()
             itemDateEnd = btn_dateEnd.text.toString()

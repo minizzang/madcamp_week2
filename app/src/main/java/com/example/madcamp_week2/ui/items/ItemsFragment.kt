@@ -31,8 +31,8 @@ class ItemsFragment : Fragment() {
     //lateinit var peopleListView : RecyclerView //사람 목록 세로 RV
 
     private val requestItemArray = ArrayList<ItemDataInList>() //신청 목록 list
-    private val peopleListArray = ArrayList<RequestedItemList>() //올린 아이템과 목록 list에 대한 list
-    private val peopleArray = ArrayList<String>() //사람 목록 list
+    //private val peopleListArray = ArrayList<RequestedItemList>() //올린 아이템과 목록 list에 대한 list
+    //private val peopleArray = ArrayList<String>() //사람 목록 list
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -88,6 +88,24 @@ class ItemsFragment : Fragment() {
 
 
     private fun serverGetBorrowReqItems(user_id: String) {
+    fun buildItemList() :ArrayList<RequestedItemList>  {
+        val peopleListArray = ArrayList<RequestedItemList>()
+        for(i : Int in 0..10){
+            val item = RequestedItemList("item", buildSub())
+            peopleListArray.add(item)
+        }
+
+        return peopleListArray
+    }
+
+    fun buildSub(): ArrayList<String> {
+        val peopleArray = ArrayList<String>()
+        peopleArray.add("minsu")
+
+        return peopleArray
+    }
+
+    fun serverGetBorrowReqItems(user_id: String) {
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getBorrowReqItems/${user_id}",

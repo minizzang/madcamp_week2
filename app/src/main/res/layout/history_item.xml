@@ -22,7 +22,7 @@
             android:layout_height="0dp"
             android:layout_weight="4.5"
             android:layout_gravity="center_horizontal"
-            android:src="@color/main_blue"/>
+            android:src="@drawable/ic_outline_hide_image_24"/>
 
         <TextView
             android:id="@+id/itemName"

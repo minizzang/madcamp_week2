@@ -11,7 +11,7 @@ import com.example.madcamp_week2.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.*
 
-class BottomSheetPeriod : BottomSheetDialogFragment() {
+class BottomSheetPeriod(val itemClick: (Int) -> Unit) : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,6 +21,7 @@ class BottomSheetPeriod : BottomSheetDialogFragment() {
 
         val startDate = root.findViewById<Button>(R.id.filterDateStart)
         val endDate = root.findViewById<Button>(R.id.filterDateEnd)
+        val confirmBtn = root.findViewById<Button>(R.id.confirm)
 
         startDate.setOnClickListener{
             val today = GregorianCalendar()
@@ -51,6 +52,11 @@ class BottomSheetPeriod : BottomSheetDialogFragment() {
 
             dlg.show()
         }
+
+        //confirmBtn.setOnClickListener {
+
+        //    dismiss()
+        //}
 
         return root
     }

@@ -44,7 +44,7 @@
                     android:layout_width="350dp"
                     android:layout_height="350dp"
                     android:layout_marginVertical="20dp"
-                    android:src="@color/main_blue"/>
+                    android:src="@drawable/ic_outline_hide_image_24"/>
 
             </FrameLayout>
 

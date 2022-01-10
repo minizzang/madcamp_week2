@@ -1,231 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="16dp"
-    tools:context=".ui.home.AddPostActivity">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+        <Button
+            android:id="@+id/itemDetailBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_round_arrow_back_ios_24"/>
 
-            <ImageView
-                android:id="@+id/iv_itemImageDetail"
-                android:layout_width="350dp"
-                android:layout_height="350dp"
-                android:layout_marginVertical="20dp"
-                android:src="@color/main_blue"/>
+    </LinearLayout>
 
-        </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:layout_gravity="right"
-            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/startChatting"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="채팅하기"
-                android:layout_marginHorizontal="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/item_square_lightblue"/>
-
-            <Button
-                android:id="@+id/btn_borrow"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="빌리기"
-                android:layout_marginHorizontal="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/item_square_lightblue"/>
-
-        </LinearLayout>
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        tools:context=".ui.home.AddPostActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_addItemNameDetail"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="상품 이름"
-                android:layout_gravity="center_vertical"
-                android:textSize="16sp" />
+                android:layout_gravity="center">
 
-            <TextView
-                android:id="@+id/ItemNameDetail"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
-                android:paddingVertical="10dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="충전기"/>
+                <ImageView
+                    android:id="@+id/iv_itemImageDetail"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:layout_marginVertical="20dp"
+                    android:src="@color/main_blue"/>
 
-        </LinearLayout>
+            </FrameLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_addItemPlaceDetail"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_gravity="center_vertical"
-                android:text="대여 장소"
-                android:textSize="16sp" />
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:layout_gravity="right"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/ItemPlaceDetail"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
-                android:paddingVertical="10dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="카이스트 N1"/>
+                <Button
+                    android:id="@+id/startChatting"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="채팅하기"
+                    android:layout_marginHorizontal="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/item_square_lightblue"/>
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btn_borrow"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="빌리기"
+                    android:layout_marginHorizontal="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/item_square_lightblue"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_addItemPriceDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:text="대여 가격"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/ItemPriceDetail"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
-                android:paddingVertical="10dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="무료"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_addItemDateDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="12dp"
-                android:text="대여 기간"
-                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="2"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_addItemNameDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="상품 이름"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ItemNameDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/item_square"
+                    android:paddingLeft="16dp"
+                    android:paddingVertical="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="충전기"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
                 android:layout_gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/ItemDateStartDetail"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/item_square"
-                    android:text="시작 날짜"
-                    android:gravity="center"
-                    android:paddingVertical="10dp"
-                    android:textColor="?android:textColorHint"
-                    android:textSize="18sp" />
+                    android:id="@+id/tv_addItemPlaceDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="대여 장소"
+                    android:textSize="16sp" />
+
                 <TextView
-                    android:id="@+id/ItemDateEndDetail"
+                    android:id="@+id/ItemPlaceDetail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:layout_weight="1"
-                    android:text="마지막 날짜"
-                    android:gravity="center"
+                    android:background="@drawable/item_square"
+                    android:paddingLeft="16dp"
                     android:paddingVertical="10dp"
-                    android:textColor="?android:textColorHint"
-                    android:textSize="18sp"
-                    android:background="@drawable/item_square"/>
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="카이스트 N1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_addItemPriceDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="대여 가격"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ItemPriceDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/item_square"
+                    android:paddingLeft="16dp"
+                    android:paddingVertical="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="무료"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_addItemDateDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="12dp"
+                    android:text="대여 기간"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ItemDateStartDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/item_square"
+                        android:text="시작 날짜"
+                        android:gravity="center"
+                        android:paddingVertical="10dp"
+                        android:textColor="?android:textColorHint"
+                        android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/ItemDateEndDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:text="마지막 날짜"
+                        android:gravity="center"
+                        android:paddingVertical="10dp"
+                        android:textColor="?android:textColorHint"
+                        android:textSize="18sp"
+                        android:background="@drawable/item_square"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="4dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_addItemDescriptionDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="설명"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ItemDescriptionDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/item_square"
+                    android:paddingLeft="16dp"
+                    android:paddingVertical="10dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="c타입 충전기 입니다. 깨끗하게 써주세요." />
             </LinearLayout>
 
         </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="4dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_addItemDescriptionDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="설명"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/ItemDescriptionDetail"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
-                android:paddingVertical="10dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="c타입 충전기 입니다. 깨끗하게 써주세요." />
-        </LinearLayout>
-
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

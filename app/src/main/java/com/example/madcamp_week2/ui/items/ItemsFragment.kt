@@ -55,10 +55,14 @@ class ItemsFragment : Fragment() {
 
 
         var adapterRequest = RequestItemAdapter(requireContext(), requestItemArray)
-        var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
 
         requestListView.adapter = adapterRequest
-        peopleItemListView.adapter = adapterPeopleList
+        requestListView.adapter!!.notifyDataSetChanged()
+
+        //var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
+        //peopleItemListView.adapter = adapterPeopleList
+        //peopleItemListView.adapter!!.notifyDataSetChanged()
+
 
         serverGetBorrowReqItems(user_id)
         serverGetMyItemPosted(user_id)
@@ -157,14 +161,31 @@ class ItemsFragment : Fragment() {
 
                 peopleListArray.clear()
 
+                Log.d("length", peopleArray.size.toString())
+
                 for (i in 0 until resArrayLength) {
+                    peopleArray.clear()
                     val resObj = JSONArray(res)[i].toString()
                     val item_id = JSONObject(resObj).getString("item_id")
                     val item_name = JSONObject(resObj).getString("item_name")
+
                     serverGetPeopleReqItemToMe(user_id, item_id, item_name)
+
+                    peopleListArray.add(RequestedItemList(item_name, peopleArray))
+
+
                 }
 
+                var adapterPeopleList = PeopleListAdapter(requireContext(), peopleListArray, peopleArray)
+                peopleItemListView.adapter = adapterPeopleList
+
+                peopleItemListView.adapter?.notifyDataSetChanged()
+
+
+
                 Log.d("length", peopleArray.size.toString())
+
+
 
             },
             Response.ErrorListener { err ->
@@ -181,16 +202,22 @@ class ItemsFragment : Fragment() {
             Response.Listener<String> { res ->
                 val resArray = JSONArray(res)
                 val resArrayLength :Int = resArray.length()
-                peopleArray.clear()
+
+                Log.d("result", res)
 
                 for (i in 0 until resArrayLength) {
                     val resObj = JSONArray(res)[i].toString()
-                    val toUserId = JSONObject(resObj).getString("to_user")
+                    val nickname = JSONObject(resObj).getString("nickname")
 
-                    serverGetUserNickname2(toUserId, itemName)
+                    //serverGetUserNickname2(toUserId, itemName)
+                    peopleArray.add(nickname)
+
                 }
                 Log.d("big list", "$itemName")
-                peopleListArray.add(RequestedItemList(itemName, peopleArray))
+
+
+
+
 
             },
             Response.ErrorListener { err ->
@@ -200,7 +227,7 @@ class ItemsFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
-    private fun serverGetUserNickname2(toUserId: String, itemName: String) {
+    /*private fun serverGetUserNickname2(toUserId: String, itemName: String) {
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getUserNickname/${toUserId}",
@@ -210,15 +237,14 @@ class ItemsFragment : Fragment() {
                 val ownerNickName = JSONObject(resObj).getString("nickname")
                 Log.d("small list", "$itemName, $ownerNickName")
 
-                peopleArray.add(ownerNickName)
-                peopleItemListView.adapter!!.notifyDataSetChanged()
+
             },
             Response.ErrorListener { err ->
                 Log.d("GetUserNickname", "error! $err")
             }){}
 
         requestQueue.add(stringRequest)
-    }
+    }*/
 
 
 

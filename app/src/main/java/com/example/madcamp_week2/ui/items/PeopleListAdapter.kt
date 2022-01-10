@@ -45,6 +45,7 @@ class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<Re
             val peopleAdapter = PeopleAdapter(context, peopleArray)
             hpersonList.layoutManager = layoutManager
             hpersonList.adapter = peopleAdapter
+            //hpersonList.adapter!!.notifyDataSetChanged()
             hpersonList.setRecycledViewPool(viewPool)
 
         }

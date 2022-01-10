@@ -4,7 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.R
 
@@ -26,9 +29,25 @@ class PeopleAdapter (val context: Context, val peopleInList: ArrayList<String>) 
 
     inner class PeopleViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var hNickName = itemView.findViewById<TextView>(R.id.requestNickname)
+        var acceptbtn = itemView.findViewById<Button>(R.id.acceptBtn)
 
         fun bindPeople(peopleInList: String){
             hNickName.text = peopleInList
+
+            acceptbtn.setOnClickListener {
+                val alertDialog = AlertDialog.Builder(itemView.context)
+                    .setMessage("진짜 수락하시겠습니까?")
+                    .setPositiveButton("확인") { dialog, which ->
+                        Toast.makeText(itemView.context, "빌리기가 체결되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("취소") { dialog, which ->
+                        Toast.makeText(itemView.context, "취소되었습니다.", Toast.LENGTH_SHORT).show()
+                    }
+                    .create()
+
+                alertDialog.show()
+            }
+
         }
 
     }

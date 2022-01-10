@@ -73,42 +73,14 @@ class HomeItemAdapter(private val context: Context) : RecyclerView.Adapter<HomeI
 //            itemImage.setImageBitmap(decodedImage)  // NULL image 처리 안해도 되나?
 
             itemView.setOnClickListener{
-
-                //item_id를 넣으면 어떤 유저의 item인지 리턴
-                serverGetItemOwner(item.item_id)
+                //item_id를 item detail page에 넘기기
+                val intent = Intent(context, ItemDetailActivity::class.java)
+                intent.putExtra("item_id", item.item_id)
+                context.startActivity(intent)
             }
 
         }
     }
 
-    fun serverGetItemOwner(item_id :String) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = object : StringRequest(
-            Request.Method.GET, "$baseURL"+"/api/getItemOwner/${item_id}",
-            Response.Listener<String> { res ->
-                val resObj = JSONArray(res)[0].toString()
-                val item_owner_id = JSONObject(resObj).getString("user_id")
 
-                //shared preference에서 user_id 가져오기
-                val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-                val gson = Gson()
-                var json = appSharedPreferences.getString("user", "")
-                var obj = gson.fromJson(json, User::class.java)
-
-                val to_user_id = obj.id
-
-                val intent = Intent(context, ItemDetailActivity::class.java)
-                intent.putExtra("item_id", item_id)
-                intent.putExtra("from_user", item_owner_id)
-                intent.putExtra("to_user", to_user_id)
-
-                context.startActivity(intent)
-
-            },
-            Response.ErrorListener { err ->
-                Log.d("getItemOwner", "error! $err")
-            }){}
-
-        requestQueue.add(stringRequest)
-    }
 }

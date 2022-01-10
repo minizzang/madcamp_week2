@@ -75,7 +75,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/edit_addItemNameDetail"
+                android:id="@+id/ItemNameDetail"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/item_square"
@@ -105,7 +105,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/edit_addItemPlaceDetail"
+                android:id="@+id/ItemPlaceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/item_square"
@@ -134,7 +134,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/edit_addItemPriceDetail"
+                android:id="@+id/ItemPriceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/item_square"
@@ -171,7 +171,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/btn_addItemDateStartDetail"
+                    android:id="@+id/ItemDateStartDetail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginRight="6dp"
@@ -183,7 +183,7 @@
                     android:textColor="?android:textColorHint"
                     android:textSize="18sp" />
                 <TextView
-                    android:id="@+id/btn_addItemDateEndDetail"
+                    android:id="@+id/ItemDateEndDetail"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_weight="1"
@@ -215,7 +215,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/edit_addItemDescriptionDetail"
+                android:id="@+id/ItemDescriptionDetail"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@drawable/item_square"

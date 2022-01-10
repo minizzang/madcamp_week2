@@ -85,7 +85,6 @@ class HomeFragment : Fragment() {
 
         val priceButton = binding.priceFilter
         val periodButton = binding.dateFilter
-        var priceFilter = -1
         //val dateFilter = -1
 
         priceButton.setOnClickListener {
@@ -228,7 +227,25 @@ class HomeFragment : Fragment() {
         }
 
         periodButton.setOnClickListener {
-            val periodSheet = BottomSheetPeriod()
+            val periodSheet : BottomSheetPeriod = BottomSheetPeriod() {
+                when (it) {
+                    0 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for (i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if (temp[i].price == 0) {
+                                items.add(temp[i])
+                            }
+                        }
+                    }
+                }
+            }
             periodSheet.show(parentFragmentManager, periodSheet.tag )
         }
 

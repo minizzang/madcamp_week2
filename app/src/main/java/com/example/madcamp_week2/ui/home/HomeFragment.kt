@@ -4,6 +4,7 @@ import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Base64
@@ -28,6 +29,7 @@ import com.example.madcamp_week2.R
 import com.example.madcamp_week2.databinding.FragmentHomeBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import io.socket.client.On
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -37,6 +39,9 @@ class HomeFragment : Fragment() {
     lateinit var homeItemAdapter: HomeItemAdapter
     var place : String = "seoul"    // 나중에 user의 place를 default로 설정
     private var _binding: FragmentHomeBinding? = null
+
+    var items = ArrayList<ItemData>()
+    var temp = ArrayList<ItemData>()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -80,27 +85,146 @@ class HomeFragment : Fragment() {
 
         val priceButton = binding.priceFilter
         val periodButton = binding.dateFilter
-        //var priceFilter = -1
+        var priceFilter = -1
         //val dateFilter = -1
 
         priceButton.setOnClickListener {
-            val priceSheet = BottomSheetPrice()
-            priceSheet.show(parentFragmentManager, priceSheet.tag )
+            val priceSheet : BottomSheetPrice = BottomSheetPrice {
+                when(it){
+                    0 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
 
-            /*val priceSheetView = layoutInflater.inflate(R.layout.search_filter_price, null, false)
-            val belowTen = priceSheetView.findViewById<Button>(R.id.belowTen)
-            val tenToTwenty = priceSheetView.findViewById<Button>(R.id.tenToTewenty)
-            val twentyToThirty = priceSheetView.findViewById<Button>(R.id.twentyToThirty)
-            val thirtyToFourty = priceSheetView.findViewById<Button>(R.id.thirtyToFourty)
-            val fourtyToFifty = priceSheetView.findViewById<Button>(R.id.fourtyToFifty)
-            val aboveFifty = priceSheetView.findViewById<Button>(R.id.aboveFifty)
+                        items.clear()
 
-            var btnArray = arrayOf(belowTen, tenToTwenty, twentyToThirty, thirtyToFourty, fourtyToFifty, aboveFifty)
+                        Log.d("cnt", temp.size.toString())
 
-            belowTen.setOnClickListener {
-                priceFilter = 1
-                Log.d("button", "$priceFilter")
-            }*/
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price == 0) {
+                                  items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    1 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price <= 500 && temp[i].price != 0) {
+                                items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    2 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price <= 1000 && temp[i].price > 500) {
+                                items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    3 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price <= 2000 && temp[i].price > 1000) {
+                                items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    4 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price <= 3000 && temp[i].price > 2000) {
+                                items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    5 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            if(temp[i].price > 3000) {
+                                items.add(temp[i])
+                            }
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                    6 -> {
+                        Log.d("cnt", items.size.toString())
+                        Log.d("cnt", temp.size.toString())
+
+                        items.clear()
+
+                        Log.d("cnt", temp.size.toString())
+
+                        for(i in 0 until temp.size) {
+                            Log.d("price", temp[i].price.toString())
+                            items.add(temp[i])
+                        }
+
+                        Log.d("cnt", items.size.toString())
+
+                        homeItemAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+            priceSheet.show(parentFragmentManager, priceSheet.tag)
         }
 
         periodButton.setOnClickListener {
@@ -123,7 +247,8 @@ class HomeFragment : Fragment() {
             Response.Listener<String> { res ->
                 val resArray = JSONArray(res)
                 val resArrayLength :Int = resArray.length()
-                var items = ArrayList<ItemData>()
+
+                items.clear()
 
                 items.apply {
                     for (i in 0 until resArrayLength) {
@@ -146,12 +271,11 @@ class HomeFragment : Fragment() {
                         item_date_start = dateFormat(item_date_start)
                         item_date_end = dateFormat(item_date_end)
 
-                        //if(priceFilter == -1) {
-                            add(ItemData(item_id, item_image, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
-                        //}
+                        add(ItemData(item_id, item_image, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
 
 
                     }
+                        temp.addAll(items)
                         homeItemAdapter.items = items
                         homeItemAdapter.notifyDataSetChanged()
                         

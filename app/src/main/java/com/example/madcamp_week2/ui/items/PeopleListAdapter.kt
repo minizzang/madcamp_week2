@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.madcamp_week2.R
 
-class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<RequestedItemList>, val peopleArray: ArrayList<String>) :
+class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<RequestedItemList>) :
     RecyclerView.Adapter<PeopleListAdapter.PeopleListViewHolder>() {
 
     val viewPool : RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
@@ -35,19 +35,19 @@ class PeopleListAdapter (val context: Context, val peopleListArray: ArrayList<Re
         var hItemName = itemView.findViewById<TextView>(R.id.lendingItem)
         var hpersonList = itemView.findViewById<RecyclerView>(R.id.peopleRV)
 
-        fun bindRequestItem(peopleList: RequestedItemList){
-            hItemName.text = peopleList.itemName
+        fun bindRequestItem(getList: RequestedItemList){
+            hItemName.text = getList.itemName
 
 
             val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
             layoutManager.recycleChildrenOnDetach = true
 
-            val peopleAdapter = PeopleAdapter(context, peopleArray)
+            val peopleAdapter = PeopleAdapter(context, getList.peopleList)
+            Log.d("adapter", "dkfkd")
             hpersonList.layoutManager = layoutManager
             hpersonList.adapter = peopleAdapter
-            //hpersonList.adapter!!.notifyDataSetChanged()
+            hpersonList.adapter?.notifyDataSetChanged()
             hpersonList.setRecycledViewPool(viewPool)
-
         }
 
     }

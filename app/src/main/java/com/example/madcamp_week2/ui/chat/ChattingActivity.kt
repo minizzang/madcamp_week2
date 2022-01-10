@@ -38,7 +38,7 @@ class ChattingActivity : AppCompatActivity() {
     private fun init(){
         //connect to server
         try{
-            mSocket = IO.socket("http://172.10.5.98:80")
+            mSocket = IO.socket("http://192.249.18.161:80")
             Log.d("SOCKET", "connection success: " + mSocket.id())
         }catch (e: URISyntaxException){
             e.printStackTrace()
@@ -52,8 +52,8 @@ class ChattingActivity : AppCompatActivity() {
         mSocket.connect()
 
         val obj = RoomData()
-        username = "usernametest2"
-        roomNum = "1"
+        username = "x3n7UQdmtP-5chFwbPNv6J2Xs-9I6yB9Ju-7RFc64Us"
+        roomNum = "9"
         obj.setRoomData(username, roomNum)
 
         //send user and room info.

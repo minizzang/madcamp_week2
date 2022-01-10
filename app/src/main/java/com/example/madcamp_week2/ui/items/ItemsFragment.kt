@@ -72,7 +72,7 @@ class ItemsFragment : Fragment() {
         serverGetBorrowReqItems(user_id)
         serverGetMyItemPosted(user_id)
 
-        var peopleListAdapter = PeopleListAdapter(requireContext(), peopleListArray/*, peopleAdapter, peopleArray*/)
+        var peopleListAdapter = PeopleListAdapter(requireContext(), peopleListArray)
         var linearLayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         peopleItemListView.layoutManager = linearLayoutManager
         peopleItemListView.adapter = peopleListAdapter
@@ -161,7 +161,6 @@ class ItemsFragment : Fragment() {
                     val item_id = JSONObject(resObj).getString("item_id")
                     val item_name = JSONObject(resObj).getString("item_name")
 
-
                     serverGetPeopleReqItemToMe(user_id, item_id, item_name)
 
                 }
@@ -192,6 +191,7 @@ class ItemsFragment : Fragment() {
 
                     val resObj = JSONArray(res)[i].toString()
                     val nickname = JSONObject(resObj).getString("nickname")
+                    val to_user = JSONObject(resObj).getString("to_user")
 
                     peopleArray.add(nickname)
 

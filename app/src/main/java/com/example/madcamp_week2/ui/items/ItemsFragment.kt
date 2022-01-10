@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
@@ -50,17 +51,11 @@ class ItemsFragment : Fragment() {
 
         val user_id = obj.id.toString()
 
-        serverGetBorrowReqItems(user_id)
-        serverGetMyItemPosted(user_id)
+        requestListView = binding.requestedList
+        peopleItemListView = binding.requestPeople
 
-        //임시 data
-        for(i: Int in 0..10) {
-            requestItemArray.add(ItemDataInList("키보드", "minsuh", "22-01-08 ~ 22-01-27"))
-            //peopleArray.add("minsuh")
-        }
 
         fun buildSub(): ArrayList<String> {
-            //val list = ArrayList<String>()
             for(i : Int in 0..1) {
                 peopleArray.add("minsu")
             }
@@ -78,25 +73,21 @@ class ItemsFragment : Fragment() {
             return peopleListArray
         }
 
-
-        requestListView = binding.requestedList
-        peopleItemListView = binding.requestPeople
-
-        //val peopleView = layoutInflater.inflate(R.layout.request_people_list, null, false)
-        //peopleListView = peopleView.findViewById(R.id.peopleRV)
-
         var adapterRequest = RequestItemAdapter(requireContext(), requestItemArray)
-        //var adapterpeople = PeopleAdapter(requireContext(), peopleArray)
         var adapterPeopleList = PeopleListAdapter(requireContext(), buildItemList(), buildSub())
 
         requestListView.adapter = adapterRequest
-        //peopleListView.adapter = adapterpeople
         peopleItemListView.adapter = adapterPeopleList
+
+        serverGetBorrowReqItems(user_id)
+        serverGetMyItemPosted(user_id)
+
 
         return root
     }
 
-    fun serverGetBorrowReqItems(user_id: String) {
+
+    private fun serverGetBorrowReqItems(user_id: String) {
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
             Request.Method.GET, "$baseURL"+"/api/getBorrowReqItems/${user_id}",
@@ -109,33 +100,54 @@ class ItemsFragment : Fragment() {
                     val owner_id = JSONObject(resObj).getString("from_user")
                     val item_id = JSONObject(resObj).getString("contract_item")
 
-//                    server
-//                    requestItemArray.add(ItemDataInList("키보드", owner_nickname, "22-01-08 ~ 22-01-27"))
+                    serverGetItemDetail(item_id, owner_id)
                 }
-
-
-                //shared preference에서 user_id 가져오기
-                val appSharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-                val gson = Gson()
-                var json = appSharedPreferences.getString("user", "")
-                var obj = gson.fromJson(json, User::class.java)
-
-                val to_user_id = obj.id
-
-                val intent = Intent(context, ItemDetailActivity::class.java)
-//                intent.putExtra("item_id", item_id)
-//                intent.putExtra("from_user", item_owner_id)
-                intent.putExtra("to_user", to_user_id)
-
-//                context.startActivity(intent)
-
             },
             Response.ErrorListener { err ->
-                Log.d("getItemOwner", "error! $err")
+                Log.d("getBorrowReqItems", "error! $err")
             }){}
 
         requestQueue.add(stringRequest)
     }
+
+    private fun serverGetItemDetail(itemId: String, ownerId: String) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = object : StringRequest(
+            Request.Method.GET, "$baseURL"+"/api/getItemDetail/${itemId}",
+            Response.Listener<String> { res ->
+                val resObj = JSONArray(res)[0].toString()
+                val item_name = JSONObject(resObj).getString("item_name")
+                val item_date_start = JSONObject(resObj).getString("item_date_start")
+                val item_date_end = JSONObject(resObj).getString("item_date_end")
+
+                serverGetUserNickname(ownerId, item_name, item_date_start, item_date_end)
+            },
+            Response.ErrorListener { err ->
+                Log.d("getItemDetail", "error! $err")
+            }){}
+
+        requestQueue.add(stringRequest)
+    }
+
+    private fun serverGetUserNickname(ownerId: String, itemName: String, dateStart: String, dateEnd: String) {
+        val requestQueue = Volley.newRequestQueue(context)
+        val stringRequest = object : StringRequest(
+            Request.Method.GET, "$baseURL"+"/api/getUserNickname/${ownerId}",
+            Response.Listener<String> { res ->
+                val resArray = JSONArray(res)
+                val resObj = JSONArray(res)[0].toString()
+                val ownerNickName = JSONObject(resObj).getString("nickname")
+                Log.d("borrowReq res", "$itemName, $ownerNickName, $dateStart, $dateEnd")
+                requestItemArray.add(ItemDataInList(itemName, ownerNickName, "$dateStart~$dateEnd"))
+                requestListView.adapter!!.notifyDataSetChanged()
+            },
+            Response.ErrorListener { err ->
+                Log.d("GetUserNickname", "error! $err")
+            }){}
+
+        requestQueue.add(stringRequest)
+    }
+
 
     fun serverGetMyItemPosted(user_id: String) {
         val requestQueue = Volley.newRequestQueue(context)
@@ -172,7 +184,7 @@ class ItemsFragment : Fragment() {
                     val resObj = JSONArray(res)[i].toString()
                     val toUserId = JSONObject(resObj).getString("to_user")
 
-                    serverGetUserNickname(toUserId, itemName)
+//                    serverGetUserNickname(toUserId, itemName)
                 }
             },
             Response.ErrorListener { err ->
@@ -182,23 +194,7 @@ class ItemsFragment : Fragment() {
         requestQueue.add(stringRequest)
     }
 
-    private fun serverGetUserNickname(toUserId: String, itemName: String) {
-        val requestQueue = Volley.newRequestQueue(context)
-        val stringRequest = object : StringRequest(
-            Request.Method.GET, "$baseURL"+"/api/getMyItemPosted/${toUserId}",
-            Response.Listener<String> { res ->
-                val resArray = JSONArray(res)
-                val resObj = JSONArray(res)[0].toString()
-                val toUserId = JSONObject(resObj).getString("nickname")
 
-                // serverGetUserNickname(toUserId, itemName)
-            },
-            Response.ErrorListener { err ->
-                Log.d("GetUserNickname", "error! $err")
-            }){}
-
-        requestQueue.add(stringRequest)
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

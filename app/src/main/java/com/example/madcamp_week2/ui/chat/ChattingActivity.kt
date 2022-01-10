@@ -5,6 +5,7 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,11 @@ class ChattingActivity : AppCompatActivity() {
 
         init()
         //var intent = intent
+
+        val backBtn = findViewById<Button>(R.id.chattingBack)
+        backBtn.setOnClickListener {
+            finish()
+        }
     }
 
     private fun init(){
@@ -47,6 +53,11 @@ class ChattingActivity : AppCompatActivity() {
         val intent = intent
         username = intent.getStringExtra("user_id").toString()
         roomNum = intent.getStringExtra("room_id").toString()
+
+        val nickName = intent.getStringExtra("nick_name").toString()
+        val nickNameView = findViewById<TextView>(R.id.chattingName)
+
+        nickNameView.text = nickName
 
         //socket connection
         mSocket.connect()

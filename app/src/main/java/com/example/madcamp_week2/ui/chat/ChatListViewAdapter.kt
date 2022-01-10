@@ -41,7 +41,7 @@ class ChatListViewAdapter(val context: Context, val dataArray: ArrayList<ChatLis
 
     inner class ChatListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var holderName : TextView = itemView.findViewById(R.id.chatListName)
-        var holderMessage : TextView = itemView.findViewById(R.id.chatListMessage)
+        //var holderMessage : TextView = itemView.findViewById(R.id.chatListMessage)
 
 
         //binding data
@@ -56,6 +56,7 @@ class ChatListViewAdapter(val context: Context, val dataArray: ArrayList<ChatLis
 
                 intent.putExtra("room_id", room_id)
                 intent.putExtra("user_id", user_id)  //현재 로그인한 계정 주인 id
+                intent.putExtra("nick_name",dataArray.name)
 
                 context.startActivity(intent)
             }

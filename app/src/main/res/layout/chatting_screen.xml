@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/purple_200"
+    android:background="@color/main_lightblue"
     tools:context=".ui.chat.ChattingActivity">
 
     <View
@@ -13,22 +13,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/chatting_top"
         app:layout_constraintBottom_toTopOf="@id/sendFrame"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/backArrow"
+    <Button
+        android:id="@+id/chattingBack"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:padding="5dp"
-        android:src="@drawable/ic_round_arrow_back_ios_24"
+        android:background="@drawable/ic_round_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <Button
         android:id="@+id/infoImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -36,7 +34,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:padding="4dp"
-        android:src="@drawable/ic_outline_info_24"
+        android:background="@drawable/ic_outline_info_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -50,13 +48,13 @@
         android:gravity="center_vertical"
         android:maxLines="1"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:text="name"
-        app:layout_constraintBottom_toBottomOf="@id/backArrow"
+        app:layout_constraintBottom_toBottomOf="@id/chattingBack"
         app:layout_constraintEnd_toStartOf="@id/infoImage"
-        app:layout_constraintStart_toEndOf="@id/backArrow"
-        app:layout_constraintTop_toTopOf="@id/backArrow"/>
+        app:layout_constraintStart_toEndOf="@id/chattingBack"
+        app:layout_constraintTop_toTopOf="@id/chattingBack"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chattingRV"
@@ -67,9 +65,10 @@
         android:overScrollMode="never"
         android:padding="20dp"
         android:visibility="visible"
+        android:layout_marginVertical="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/chattingBackground"
-        app:layout_constraintTop_toTopOf="@id/backArrow"/>
+        app:layout_constraintTop_toBottomOf="@id/chattingName"/>
 
     <ProgressBar
         android:id="@+id/progress"

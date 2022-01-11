@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -78,6 +79,17 @@ class ItemsFragment : Fragment() {
         peopleItemListView.adapter = peopleListAdapter
         peopleItemListView.adapter!!.notifyDataSetChanged()
 
+        var swipe = binding.refresh
+
+        swipe.setOnRefreshListener{
+            requestItemArray.clear()
+            peopleListArray.clear()
+
+            serverGetBorrowReqItems(user_id)
+            serverGetMyItemPosted(user_id)
+
+            swipe.isRefreshing = false
+        }
 
         return root
     }

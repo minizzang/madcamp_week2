@@ -76,6 +76,15 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        var swipe = binding.refreshItem
+
+        swipe.setOnRefreshListener{
+            items.clear()
+            initRecycler()
+
+            swipe.isRefreshing = false
+        }
+
         return root
     }
 

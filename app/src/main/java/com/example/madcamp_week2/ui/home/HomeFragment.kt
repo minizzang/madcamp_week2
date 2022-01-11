@@ -68,21 +68,10 @@ class HomeFragment : Fragment() {
             }
         }
 
-        //initRecycler()
-
         val btn_add: View = binding.btnFloatingAdd
         btn_add.setOnClickListener{ view ->
             val intent = Intent(context, AddPostActivity::class.java)
             startActivity(intent)
-        }
-
-        var swipe = binding.refreshItem
-
-        swipe.setOnRefreshListener{
-            items.clear()
-            initRecycler()
-
-            swipe.isRefreshing = false
         }
 
         return root
@@ -93,9 +82,11 @@ class HomeFragment : Fragment() {
         binding.mainRecycler.adapter = homeItemAdapter
 
         val priceButton = binding.priceFilter
-        //val dateFilter = -1
 
         priceButton.setOnClickListener {
+            items.clear()
+            Log.d("item cnt", items.size.toString())
+
             val priceSheet : BottomSheetPrice = BottomSheetPrice {
                 when(it){
                     0 -> {
@@ -109,7 +100,7 @@ class HomeFragment : Fragment() {
                         for(i in 0 until temp.size) {
                             Log.d("price", temp[i].price.toString())
                             if(temp[i].price == 0) {
-                                  items.add(temp[i])
+                                items.add(temp[i])
                             }
                         }
 
@@ -233,14 +224,26 @@ class HomeFragment : Fragment() {
             }
             priceSheet.show(parentFragmentManager, priceSheet.tag)
         }
-        
+
 
         Log.d("place1", "$place")
-        serverGetItems(place/*, priceFilter*/)
+        serverGetItems(place)
+
+        var swipe = binding.refreshItem
+
+        swipe.setOnRefreshListener{
+            items.clear()
+            temp.clear()
+
+            serverGetItems(place)
+
+            swipe.isRefreshing = false
+        }
+
 
     }
 
-    fun serverGetItems(place:String/*, priceFilter:Int*/) {
+    fun serverGetItems(place:String) {
         Log.d("place", "$place")
         val requestQueue = Volley.newRequestQueue(context)
         val stringRequest = object : StringRequest(
@@ -273,51 +276,52 @@ class HomeFragment : Fragment() {
                         item_date_end = dateFormat(item_date_end)
 
                         add(ItemData(item_id, item_image, item_name, item_post_time, item_date_start, item_date_end, item_price, item_place))
-
-
                     }
-                        temp.addAll(items)
-                        homeItemAdapter.items = items
-                        homeItemAdapter.notifyDataSetChanged()
+
+                    temp.addAll(items)
+                    homeItemAdapter.items = items
+                    homeItemAdapter.notifyDataSetChanged()
                         
-                        //아이템 이름으로 검색
-                        val searchET = binding.searchText
-                        val filteredList = ArrayList<ItemData>()
+                    //아이템 이름으로 검색
+                    val searchET = binding.searchText
+                    val filteredList = ArrayList<ItemData>()
 
-                        searchET.addTextChangedListener(object : TextWatcher{
+                    searchET.addTextChangedListener(object : TextWatcher{
 
-                            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-                            }
+                        }
 
-                            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                                val searchText = searchET.text.toString()
-                                searchFilter(searchText)
-                            }
+                        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                            val searchText = searchET.text.toString()
+                            searchFilter(searchText)
+                        }
 
-                            override fun afterTextChanged(p0: Editable?) {
+                        override fun afterTextChanged(p0: Editable?) {
 
-                            }
+                        }
 
-                            fun searchFilter(searchText: String){
-                                filteredList.clear()
+                        fun searchFilter(searchText: String){
+                            filteredList.clear()
 
-                                for(i in 0 until items.size){
-                                    if(items[i].name.contains(searchText)){
-                                        filteredList.add(items[i])
-                                    }
+                            for(i in 0 until items.size){
+                                if(items[i].name.contains(searchText)){
+                                    filteredList.add(items[i])
                                 }
-
-                                homeItemAdapter.filterList(filteredList)
                             }
+
+                            homeItemAdapter.filterList(filteredList)
+                        }
                     })
 
-                    fun onResume(){
-                        super.onResume()
-                    }
+                    //fun onResume(){
+                   //     super.onResume()
+                    //}
 
-                        binding.mainRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-                    }
+                    binding.mainRecycler.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+                }
+
+
 
             },
             Response.ErrorListener { err ->

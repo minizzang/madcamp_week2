@@ -245,13 +245,15 @@
             <EditText
                 android:id="@+id/edit_addItemDescription"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/item_square"
-                android:paddingLeft="16dp"
+                android:paddingHorizontal="16dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
+                android:minHeight="150dp"
                 android:text=""
-                android:hint="상품 설명을 입력해주세요."/>
+                android:hint="상품 설명을 입력해주세요." />
+
         </LinearLayout>
 
         <Button

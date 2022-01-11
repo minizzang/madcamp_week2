@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="16dp"
+    android:background="@color/background_gray"
     tools:context=".ui.home.AddPostActivity">
 
     <LinearLayout
@@ -14,13 +15,13 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
             <ImageButton
                 android:id="@+id/btn_image"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:background="@drawable/item_square_lightblue"
                 android:layout_marginVertical="20dp"
@@ -53,6 +54,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="16dp"
                 android:text="상품 이름"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
                 android:textSize="16sp" />
 
             <EditText
@@ -81,6 +84,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_gravity="center_vertical"
                 android:text="대여 장소"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
                 android:textSize="16sp" />
 
             <HorizontalScrollView
@@ -159,6 +164,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
                 android:text="대여 가격"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
                 android:textSize="16sp" />
             <EditText
                 android:id="@+id/edit_addItemPrice"
@@ -186,6 +193,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="12dp"
                 android:text="대여 기간"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
                 android:textSize="16sp" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -230,6 +239,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="설명"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
                 android:textSize="16sp" />
             <EditText
                 android:id="@+id/edit_addItemDescription"
@@ -251,6 +262,7 @@
             android:layout_marginVertical="32dp"
             android:background="@drawable/main_blue_square_round"
             android:text="등록하기"
+            android:textSize="18dp"
             android:textColor="@color/white"
             android:textStyle="bold" />
 

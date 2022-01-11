@@ -19,6 +19,7 @@ import com.example.madcamp_week2.BASE_URL
 import com.example.madcamp_week2.R
 import com.example.madcamp_week2.User
 import com.example.madcamp_week2.ui.chat.ChattingActivity
+import com.example.madcamp_week2.ui.items.ItemDataInList
 import com.google.gson.Gson
 import org.json.JSONArray
 import org.json.JSONObject
@@ -29,6 +30,8 @@ class ItemDetailActivity : AppCompatActivity() {
     lateinit var item_id:String
     var room_id:String = ""
     private val baseURL = BASE_URL
+
+    lateinit var from_nickname:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,6 @@ class ItemDetailActivity : AppCompatActivity() {
         }
 
         serverGetItemDetail(item_id)
-
 
     }
 
@@ -116,6 +118,8 @@ class ItemDetailActivity : AppCompatActivity() {
 
                 from_user = JSONObject(resObj).getString("user_id")
                 to_user = obj.id.toString()
+
+                serverGetUserNickname(from_user)
             },
             Response.ErrorListener { err ->
                 Log.d("getItemDetail", "error! $err")
@@ -155,6 +159,25 @@ class ItemDetailActivity : AppCompatActivity() {
         requestQueue.add(stringRequest)
     }
 
+    private fun serverGetUserNickname(ownerId: String) {
+        val requestQueue = Volley.newRequestQueue(this)
+        val stringRequest = object : StringRequest(
+            Request.Method.GET, "$baseURL"+"/api/getUserNickname/${ownerId}",
+            Response.Listener<String> { res ->
+                val resArray = JSONArray(res)
+                val resObj = JSONArray(res)[0].toString()
+                val ownerNickName = JSONObject(resObj).getString("nickname")
+
+                from_nickname = ownerNickName
+
+            },
+            Response.ErrorListener { err ->
+                Log.d("GetUserNickname", "error! $err")
+            }){}
+
+        requestQueue.add(stringRequest)
+    }
+
 
     fun serverGetRoomNum(user1_id:String, user2_id:String) {
         val requestQueue = Volley.newRequestQueue(this)
@@ -172,6 +195,7 @@ class ItemDetailActivity : AppCompatActivity() {
                     intent.putExtra("room_id", room_id)
                     Log.d("room number", room_id)
                     intent.putExtra("user_id", to_user)  //현재 로그인한 계정 주인 id
+                    intent.putExtra("nick_name", from_nickname)
                     this.startActivity(intent)
 
                 }

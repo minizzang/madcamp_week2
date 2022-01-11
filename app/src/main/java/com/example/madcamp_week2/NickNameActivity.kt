@@ -19,6 +19,7 @@ import kotlin.properties.Delegates
 class NickNameActivity : AppCompatActivity() {
 
     private val baseURL = BASE_URL
+    var flag = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,8 @@ class NickNameActivity : AppCompatActivity() {
         var mobile:String = ""
         var nickname:String = ""
         var place:String = ""
+
+
 
         if (intent.hasExtra("user_id") && intent.hasExtra("user_name") && intent.hasExtra("user_email") && intent.hasExtra("user_mobile")) {
             id = intent.getStringExtra("user_id").toString()
@@ -67,8 +70,14 @@ class NickNameActivity : AppCompatActivity() {
         // 회원가입 버튼 클릭 시
         val btn_signup = findViewById<Button>(R.id.btn_signup)
         btn_signup.setOnClickListener {
-            // 회원정보 db에 저장
-            serverAddUser(id, name, nickname, email, mobile, place)
+
+            if(flag == false){
+                Toast.makeText(this, "닉네임을 다시 입력해주세요.", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                // 회원정보 db에 저장
+                serverAddUser(id, name, nickname, email, mobile, place)
+            }
         }
     }
 
@@ -80,9 +89,9 @@ class NickNameActivity : AppCompatActivity() {
                 val msg = JSONObject(res).getString("msg")
                 if (msg == "duplicated") {
                     Log.d("checkNickname", "res : $msg")
-                    handleNickname(true)
+                    flag = handleNickname(true)
                 } else {
-                    handleNickname(false)
+                    flag = handleNickname(false)
                 }
             },
             Response.ErrorListener { err ->
@@ -100,7 +109,7 @@ class NickNameActivity : AppCompatActivity() {
         requestQueue.add(stringRequest)
     }
 
-    fun handleNickname(result:Boolean) {
+    fun handleNickname(result:Boolean) : Boolean {
 
         val txt_confirm_nickname = findViewById<TextView>(R.id.tv_confirm)
         val summitNickName:Button = findViewById<Button>(R.id.btn_summitNickName)
@@ -112,10 +121,12 @@ class NickNameActivity : AppCompatActivity() {
             txt_confirm_nickname.setTextColor(Color.parseColor("#64C5F1"))  //반영 안됨???
             Log.d("dup test", "false")
             // 버튼 비활성화?
+            return true
         }
         else {  // 닉네임 중복 처리
             txt_confirm_nickname.setText("중복된 별명이 있습니다.")
             txt_confirm_nickname.setTextColor(Color.parseColor("#FF4537"))
+            return false
         }
         // 8자 이상일 때 처리
     }

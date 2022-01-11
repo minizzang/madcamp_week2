@@ -1,67 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_gray"
-    android:paddingBottom="10dp"
-    tools:context=".ui.items.ItemsFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/requestedText"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1.4"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:text="내가 신청한 물건"
-        android:textColor="@color/text_black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/requestedList"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:orientation="horizontal"
-        android:scrollbars="horizontal"
-        android:paddingHorizontal="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/requestedText" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/background_gray"
+        android:paddingBottom="10dp"
+        tools:context=".ui.items.ItemsFragment">
 
-    <TextView
-        android:id="@+id/lendingText"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="1.4"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:paddingLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:text="나에게 신청한 사람"
-        android:textColor="@color/text_black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/requestedText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="내가 신청한 물건"
+            android:textColor="@color/text_black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/requestPeople"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
-        android:orientation="horizontal"
-        android:paddingHorizontal="10dp"
-        android:scrollbars="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/lendingText" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/requestedList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:paddingHorizontal="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/requestedText" />
 
+        <TextView
+            android:id="@+id/lendingText"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1.4"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="나에게 신청한 사람"
+            android:textColor="@color/text_black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/requestPeople"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:scrollbars="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/lendingText" />
+
+    </LinearLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

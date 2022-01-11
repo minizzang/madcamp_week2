@@ -238,6 +238,8 @@ class AddPostActivity : AppCompatActivity() {
 
             // db에 아이템 추가
             serverAddItem(user_id, itemImage, itemName, itemPlace, itemPrice, itemDateStart, itemDateEnd, itemDescription)
+
+            finish()
         }
     }
 

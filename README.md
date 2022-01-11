@@ -1,6 +1,6 @@
 # 빌리지(Village) - Frontend
-- FrondEnd : Android Studio, Kotlin
-- BackEnd 관련 정보는 [여기](https://github.com/minizzang/madcamp_week2_server)에서 확인해주세요.
+- Frondend : Android Studio, Kotlin
+- Backend 관련 정보는 [여기](https://github.com/minizzang/madcamp_week2_server)에서 확인해주세요.
 
 ## 앱 소개
 빌리지(Village)는 물건 공유 플랫폼입니다. 

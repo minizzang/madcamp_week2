@@ -1,4 +1,5 @@
 # 빌리지(Village) - FrontEnd
+- FrondEnd : Android Studio, Kotlin
 - BackEnd 관련 정보는 [여기](https://github.com/minizzang/madcamp_week2_server)에서 확인해주세요.
 
 ## 앱 소개

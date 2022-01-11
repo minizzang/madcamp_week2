@@ -18,9 +18,10 @@
 
 앱에 처음 등록하는 사용자의 경우 네이버 로그인 후 앱 내에서 사용할 닉네임과 기본 지역을 설정하여 앱에 가입할 수 있습니다. 초기 앱 가입 시 사용자의 정보를 Database에 저장하게 됩니다. 이미 등록 된 사용자는 네이버 로그인을 통해 바로 앱에 로그인을 할 수 있으며, 로그인 시 Database에서 불러온 사용자의 정보를 SharedPreference에 저장하게 됩니다.
 
-|앱 시작 화면|로그인 화면|
-|:-:|:-:|
-|||
+|앱 시작 화면|로그인 화면|닉네임 설정 화면|
+|:-:|:-:|:-:|
+|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-202505.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190050.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/InkedScreenshot_20220111-185816_LI.jpg)|
+
 
 
 
@@ -42,6 +43,10 @@ BottomNavigation을 활용하여 Tab을 구현했고, 아래의 Tab 버튼을 �
     
     
     목록의 각 아이템은 클릭이 가능하며, 클릭 시 등록할 때 저장된 아이템의 상세 정보를 DataBase에서 읽어와 확인할 수 있도록 구현했습니다. 상세 정보 창에서 채팅하기 Button 클릭 시 아이템을 등록한 사용자와의 채팅 방이 만들어져 Database에 저장되고, 채팅 창으로 이동할 수 있습니다. (채팅 관련 세부 내용은 [여기](#chatting)을 참고해주세요.) 상세 정보 창에서 빌리기 Button 클릭 시 안내창 팝업이 뜨고, 해당 아이템 빌리기 신청이 가능합니다. 빌리기 신청시 Database에 빌린 정보를 저장하도록 구현했습니다.
+    
+    |홈 메인 화면|가격 조건 설정|물건 등록 화면|물건 상세 정보|
+    |:-:|:-:|:-:|:-:|
+    |![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190211.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190246.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190238.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190257.jpg)|
  
  
 > ### Chatting Tab
@@ -54,6 +59,10 @@ BottomNavigation을 활용하여 Tab을 구현했고, 아래의 Tab 버튼을 �
      #### Chatting 기능 세부 내용
      
        - 실시간 Chatting 기능은 Socket 통신을 활용하여 구현하였습니다. 또한, Chatting 내용을 Database에도 저장하여 다시 Chatting 방에 접속했을 때, 이전의 Chatting 내용을 불러와 확인할 수 있도록 했습니다. 
+    
+    |채팅방 목록|실시간 채팅 화면|
+    |:-:|:-:|
+    |![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190607.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190513.jpg)|
 
 
 
@@ -67,6 +76,10 @@ BottomNavigation을 활용하여 Tab을 구현했고, 아래의 Tab 버튼을 �
     
     내가 올린 물건에 빌리기를 신청한 사람의 목록을 중첩된 RecyclerView를 이용하여 화면에 표시하도록 했습니다. 가로 RecyclerView에 내가 올린 물건의 목록을 볼 수 있도록 했습니다. 각 물건에 세로 RecyclerView를 이용하여 해당 물건을 신청한 사람 목록을 Database에서 불러와 닉네임을 보여줄 수 있도록 구현했습니다. 신청자 닉네임 옆의 수락하기 Button 클릭 시 신청자와의 물건 빌리기가 체결되며 해당 물건은 물건 목록에서 사라지게 됩니다.
     
+    |신청 물건 목록|
+    |:-:|
+    |<img src="https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190625.jpg" width="400"/>|
+    
 > ### Profile Tab
   - 로그인 한 사용자의 정보를 보여주는 Tab입니다.
   
@@ -76,6 +89,10 @@ BottomNavigation을 활용하여 Tab을 구현했고, 아래의 Tab 버튼을 �
     
     
     상단에 이력보기 버튼을 클릭하면, 나의 빌리기 이력을 확인할 수 있는 창으로 연결됩니다. 나의 빌리기 이력 창은 빌리기가 체결된 빌려준 물건 이력과 빌린 물건 이력을 Database에서 읽어와 표시합니다. 각각 가로 RecyclerView로 구성했으며, 물건 이름, 상대방 닉네임, 대여 기간을 표시해줍니다.
+    
+    |사용자 프로필|빌리기 이력|
+    |:-:|:-:|
+    |![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/InkedScreenshot_20220111-190640_LI.jpg)|![](https://github.com/minizzang/madcamp_week2/blob/master/Screenshots/Screenshot_20220111-190700.jpg)|
 
 
 ## Credit

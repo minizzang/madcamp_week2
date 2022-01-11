@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recycler_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/iv_itemImage_recycler"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_outline_hide_image_24"
-        android:padding="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_baseline_image_24"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,8 +37,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="상품 이름"
+        android:textColor="@color/text_black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_itemImage_recycler"
@@ -60,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="1dp"
         android:text="21-01-02"
         app:layout_constraintBottom_toBottomOf="@+id/tv_itemDate"
         app:layout_constraintStart_toEndOf="@+id/tv_itemDate" />
@@ -69,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="1dp"
         android:text="400원"
         app:layout_constraintBottom_toBottomOf="@+id/tv_itemPrice"
         app:layout_constraintStart_toEndOf="@+id/tv_itemPrice" />

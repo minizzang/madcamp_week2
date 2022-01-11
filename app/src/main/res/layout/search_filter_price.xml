@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,81 +15,108 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="가격대 선택"
             android:padding="10dp"
-            android:textSize="24sp"/>
+            android:text="가격대 설정하기"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/text_black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="3dp"
+            android:layout_marginVertical="5dp"
+            android:layout_height="2dp"
+            android:background="@color/main_dark_gray"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="8dp">
 
-            <Button
-                android:id="@+id/free"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="무료"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="무료"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
 
-            <Button
-                android:id="@+id/below500"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0원 ~ 500원"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                <Button
+                    android:id="@+id/below500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0원 ~ 500원"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/below1000"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="500원 ~ 1,000원"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/below1000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500원 ~ 1,000원"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
 
-            <Button
-                android:id="@+id/below2000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1,000원 ~ 2,000원"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                <Button
+                    android:id="@+id/below2000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1,000원 ~ 2,000원"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/below3000"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2,000원 ~ 3,000원"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/below3000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2,000원 ~ 3,000원"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
 
-            <Button
-                android:id="@+id/above3000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3,000원 초과"
-                android:textSize="18sp"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_margin="7dp"
-                android:background="@drawable/main_blue_outline"/>
+                <Button
+                    android:id="@+id/above3000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3,000원 초과"
+                    android:textSize="18sp"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="10dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/main_blue_outline"/>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/showAll"

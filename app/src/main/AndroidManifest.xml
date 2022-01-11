@@ -16,6 +16,16 @@
         android:theme="@style/Theme.Madcamp_week2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".StartActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".ui.profile.HistoryActivity"
             android:exported="false" />
         <activity
@@ -26,12 +36,8 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.home.ItemDetailActivity"

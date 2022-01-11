@@ -227,6 +227,8 @@ class HomeFragment : Fragment() {
 
 
         Log.d("place1", "$place")
+        items.clear()
+        temp.clear()
         serverGetItems(place)
 
         var swipe = binding.refreshItem
